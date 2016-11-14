@@ -1,0 +1,29 @@
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
+{% for collected in collecteds %}
+	{% if collected.status != "Ended" %}
+		<div class="col-md-12">
+			<div class="row serieToSee">
+				<div class="col-md-2">
+					{% if collected.serie.poster != "" %}
+						<img class="poster" src="{{ asset('upload/poster/'~ collected.serie.poster ~'') }}" alt="{{ collected.serie.name }}" />
+					{% else %}
+						<img class="poster" src="{{ asset('images/default_poster.jpg') }}" alt="{{ collected.serie.name }}" />
+					{% endif %}
+				</div>
+				<div class="col-md-10">
+					<div class="row serie_name"> 
+                        <a href="serie/{{ collected.serie.slug }}">{{ collected.serie.name }}</a>
+					</div>
+					<div class="row">
+						{{ collected.nbAvailableEpisode }} épisodes disponibles
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endfor %}

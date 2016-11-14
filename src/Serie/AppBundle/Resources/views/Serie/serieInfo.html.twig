@@ -1,0 +1,237 @@
+{% extends "SerieAppBundle::layout.html.twig" %}
+
+{% block title %}{{serie.name}}{% endblock %}
+
+{% block body %}
+<div class="container-fluid main_container">
+	<div class="row">
+		<div class="col-md-2 fixed">
+			<div class="row">
+				<div class="col-md-12">
+					<p class="title_column">
+						Les chiffres
+					</p>
+				</div>
+			</div>
+			{% if serie.runtime != 0 %}
+			<div class="row">
+				<div class="col-md-12 serie_number">					
+					
+						<span>{{ serie.durationHour }}h{{ serie.durationMin }}m</span>
+					
+				</div>
+			</div>
+			{% endif %}
+			<div class="row">
+				<div class="col-md-12 serie_number">
+						<span>{{ serie.nbSeasons }} </span> 
+						{% if serie.nbSeasons == 1 %} saison
+						{% else %} saisons
+						{%endif %}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 serie_number">
+						<span>{{ serie.nbEpisodes }} </span>
+						{% if serie.nbEpisodes == 1 %} épisode
+						{% else %} épisodes
+						{%endif %}
+				</div>
+			</div>
+			{% if serie.poster != "" %}
+			<div class="row">
+				<div id="serie_{{ serie.id }}" class="col-md-12">
+							{% if serie.inCollection(app.user.id) %}
+			{% if serie.inCollection(app.user.id).status == "Not started"  %}
+			<div class="hovereffect shadow_effect_not_started " >
+			{% elseif serie.inCollection(app.user.id).status == "Continuing" %}
+			<div class="hovereffect shadow_effect_continuing " >
+			{% elseif serie.inCollection(app.user.id).status == "Ended" %}
+			<div class="hovereffect shadow_effect_ended " >
+			{% endif %}
+		{% else %}
+		<div class="hovereffect shadow_effect" >
+		{% endif %}
+			{% if serie.poster != "" %}
+				<img class="poster" src="{{ asset('upload/poster/'~ serie.poster ~'') }}" alt="{{ serie.name }}" />
+			{% else %}
+				<img class="poster" src="{{ asset('images/default_poster.jpg') }}" alt="{{ serie.name }}" />
+			{% endif %}
+
+		</div>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+		
+		
+		<div class="col-md-10 scrollit">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="row">
+			
+						<div class="col-md-12">
+							{% if serie.banner != "" %}
+								<img class="banner"  width="100%" src="{{ asset('upload/banner/'~ serie.banner ~'') }}" alt="{{ serie.name }}" />
+							{% else %}
+								<h1>{{ serie.name }}</h1>
+							{% endif %}
+						</div>
+					</div>
+					
+					<div class="row">
+						<div id="div_button" class="col-md-offset-1 col-md-5">
+							{% if not serie.inCollection(app.user.id) %}
+								<a href="javascript:getModalForm({{serie.id}},0)">
+									<button type="button" class="btn btn-success btn-lg">Ajouter à ma collection</button>
+								</a>
+							{% else %}	
+								<button type="button" id="button_colleced" class="btn btn-info btn-lg">Dans ma collection</button>
+									<button type="button" id="button_collcted" class="btn btn-primary btn-lg">
+										<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+									</button>
+								<a href="javascript:deleteCollected({{serie.id}},{{app.user.id}})">
+									<button type="button" id="button_collcted" class="btn btn-danger btn-lg">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									</button>
+								</a>
+							{% endif %}
+						</div>
+						{% if serie.rating != 0 %}
+						<div class="col-md-6" style="text-align:right;">
+								{% for iStar in 1..5 %}
+									{% if iStar*2 < serie.rating+0.5 %}
+										<img class="star" src="{{ asset('images/star.png') }}">
+									{% elseif iStar*2 < serie.rating+1.5 %}
+										<img class="star" src="{{ asset('images/star_demi.png') }}">
+									{% else %}
+										<img class="star" src="{{ asset('images/star_empty.png') }}">
+									{% endif %}
+									
+								{% endfor %}
+								<!--<span>{{ serie.rating }}</span> / 10-->
+						</div>
+						{% endif %}
+					</div>
+					
+					<div class="row">
+						<div class="col-md-12 overview">
+							<p class="title_column">
+								Résumé
+							</p>
+							<p class="part_chapter">
+								{{ serie.overview }}
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<ul class="nav nav-tabs" id="myTab">
+								<li class="dropdown">
+									<a data-toggle="dropdown" class="dropdown-toggle" id="myTabDropSaison" href="#">Saison <b class="caret"></b></a>
+									<ul aria-labelledby="myTabDropSaison" role="menu" class="dropdown-menu dropdown-menu-info">
+										{% for iSaison in 1..serie.nbSeasons %}
+										<li><a data-toggle="tab" href="#dropdown_S{{iSaison}}">Saison {{ iSaison }}</a></li>
+										{% endfor %}
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-3">	
+							<div class="tab-content" id="myTabContent">
+							{% for iSaison in 1..serie.nbSeasons %}
+								<!--{% for iEpisode in 1..serie.nbEpisodesInSeason(iSaison) %}-->
+								<div id="dropdown_S{{iSaison}}" class="tab-pane fade">
+									<ul class="nav nav-tabs" id="myTab">
+										<li class="dropdown">
+											<a data-toggle="dropdown" class="dropdown-toggle" id="myTabDropEpisode" href="#">Episode <b class="caret"></b></a>
+											<ul aria-labelledby="myTabDropSaison" role="menu" class="dropdown-menu dropdown-menu-info">
+												{% for iEpisode in 1..serie.nbEpisodesinSeason(iSaison) %}
+												<li><a data-toggle="tab" href="#dropdown_S{{iSaison}}E{{iEpisode}}">Episode {{ iEpisode }}</a></li>
+												{% endfor %}
+											</ul>
+										</li>
+									</ul>
+								</div>
+								<!--{% endfor %}-->
+							{% endfor %}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						
+						<div class="tab-content" id="myTabContent">
+							{% for iSaison in 1..serie.nbSeasons %}
+								{% for iEpisode in 1..serie.nbEpisodesInSeason(iSaison) %}
+								<div id="dropdown_S{{iSaison}}E{{iEpisode}}" class="tab-pane fade">
+								
+									<div class="col-md-12 overview">
+										<p class="title_column">
+											Saison {{iSaison}} Episode {{ iEpisode }} : {{serie.episode(iSaison,iEpisode).episodeName}}
+										</p>
+										<p class="part_chapter">
+											{{serie.episode(iSaison,iEpisode).overview}}
+										<p>
+									</div>
+									
+								</div>
+								{% endfor %}
+							{% endfor %}
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="row">
+						<div class="col-md-3">
+							<span class="year_serie">{{serie.firstAired|date('Y')}}</span>
+						</div>
+						<div class="col-md-9" style="text-align:right;">
+							{% if serie.status == "Continuing" %}
+								<span class="continuing">En cours</span>						
+							{% else %}
+								<span class="ended">Terminée</span>
+						{% endif %}
+						</div>
+					</div>
+					{% if serie.nextEpisode %}
+                        {% if serie.nextEpisode.firstAired %}
+						<div class="row">
+							<div class="col-md-12">
+								<p class="nextEpisode"><span>Prochain épisode : {{serie.nextEpisode.firstAired|date('d/m/Y')}}
+								(S{{ serie.nextEpisode.seasonNumber < 10 ? '0' ~ serie.nextEpisode.seasonNumber : serie.nextEpisode.seasonNumber }}E{{ serie.nextEpisode.episodeNumber < 10 ? '0' ~ serie.nextEpisode.episodeNumber : serie.nextEpisode.episodeNumber }})</span></p>
+							</div>
+						</div>
+                        {% endif %}
+					{% endif %}
+					<div class="row">
+						<p class="title_column">
+							Distribution
+						</p>
+					</div>
+					{% for actor in serie.actors %}
+						<div class="row row_actor">
+							<div class="col-md-6">
+							{{ actor.name }}
+							</div>
+							<div class="col-md-6" style="color:#0099ff">
+							{{ actor.role }}
+							</div>
+						</div>
+					{% endfor %}
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ asset('js/serieInfo.js') }}"></script>
+<script>
+	hoverButton();
+</script>
+{% endblock %}

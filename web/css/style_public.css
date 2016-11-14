@@ -1,0 +1,55 @@
+body{
+	background:url('../images/background_modeldouble.png')no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	margin-top:53px;
+	margin-right:10px;
+	color:white;
+}
+.loading {
+	width:25px;
+	margin-top:10px;
+	visibility:hidden;
+}
+/************************* Navbar ***************************/
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(0,0,0,.6);
+}
+#login-dp .help-block{
+    font-size:12px    
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}
+/************************* Autre ***************************/
+.presentation {
+	background:#333344;
+	border:2px solid #0099FF;
+	box-shadow: 0px 0px 10px #0099FF;
+	padding:20px;
+	margin-top:100px;
+}
+
+

@@ -1,0 +1,176 @@
+{% extends "SerieAppBundle::modalLayout.html.twig" %}
+
+{% block script %}
+<script>
+$(function() {
+	checkAlert();
+	rating("{{ asset('images/') }}");
+	slider_seasonSeen({{ nbSeasonSeen }}, {{ serie.nbSeasons }}, "{{ serie.status }}", {{ nbEpisodesBySeason|json_encode }});
+	slider_episodeSeen({{ nbEpisodeSeen }}, {{ nbEpisodesBySeason|json_encode }}, {{ serie.nbSeasons }}, "{{ serie.status }}");
+	cancelAction();
+	submitAdd("{{ asset('images/') }}");
+	submitUpdate("{{ asset('images/') }}");
+});
+
+</script>
+{% endblock %}
+
+
+{% block body %}
+	<div class="col-md-4">
+{% if serie.poster != "" %}
+	<img class="modal_poster" src="{{ asset('upload/poster/'~ serie.poster ~'') }}" alt="{{ serie.name }}" />
+{% endif %}
+	</div><!--
+	--><div class="col-md-8">
+		<div class="row modal_title">
+			<div class="col-md-6">
+				<h2>{{ serie.name }}</h2>
+			</div>
+			<div class="col-md-6" style="margin-top:10px">
+			{% if rated > 0 %}
+				<!--
+				{% for i in 1..rated %}
+					{% if (i%2 == 0) %}
+						 --><a href="javascript:" class="astar" id="star_{{i}}"><img src="{{ asset('images/star_right.png') }}" class="star"/></a><!--
+					{% else %}
+						 --><a href="javascript:" class="astar" id="star_{{i}}"><img src="{{ asset('images/star_left.png') }}" class="star"/></a><!--
+					{% endif %}
+				{% endfor %}
+				{% if rated < 10 %}
+					{% for i in rated+1..10 %}
+						{% if (i%2 == 0) %}
+							 --><a href="javascript:" class="astar" id="star_{{i}}"><img src="{{ asset('images/star_right_empty.png') }}" class="star"/></a><!--
+						{% else %}
+							 --><a href="javascript:" class="astar" id="star_{{i}}"><img src="{{ asset('images/star_left_empty.png') }}" class="star"/></a><!--
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+				-->
+			{% else %}
+				<!--
+				{% for i in 1..10 %}
+					{% if (i%2 == 0) %}
+						 --><a href="javascript:" class="astar" id="star_{{i}}"><img src="{{ asset('images/star_right_empty.png') }}" class="star"/></a><!--
+					{% else %}
+						 --><a href="javascript:" class="astar" id="star_{{i}}"><img src="{{ asset('images/star_left_empty.png') }}" class="star"/></a><!--
+					{% endif %}
+				{% endfor %}
+				-->
+			{% endif %}
+			</div>
+		</div>
+		{{ form_start(form) }}
+			{{ form_widget(form.rated, {'attr': {'readonly': 'readonly' } }) }}
+			{{ form_widget(form.seasonSeen, {'attr': {'readonly': 'readonly' } }) }}
+			{{ form_widget(form.episodeSeen, {'attr': {'readonly': 'readonly' } }) }}
+			<input type="hidden" readonly id="serie_id" value="{{ serie.id }}" />
+			<input type="hidden" readonly id="user_id" value="{{ app.user.id }}" />
+		
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="checkbox">
+						{{ form_widget(form.follow)}} <a href="#" data-toggle="popover" data-trigger="hover" title="Information" data-content="Si vous décochez cette case, vous ne serez pas informé des nouveaux épisodes et la série sera considérée comme terminée">{{ form_label(form.follow)}}</a>
+								
+				</div>
+			</div>
+		</div>
+	
+
+
+		
+		{% if serie.status != "Ended" %}
+		<div class="row part_form">
+			<div class="col-md-2 part_form_title vcenter">					
+					<p>
+						Alerte mail
+					</p>
+			</div><!--	
+			--><div class="col-md-10 part_form_content vcenter">
+				
+				<label class="checkbox-inline">
+					{{ form_widget(form.alertEachEpisode)}} 
+					{{ form_label(form.alertEachEpisode)}} 
+				</label>
+				<label class="checkbox-inline">
+					{{ form_widget(form.alertFirstEpisode)}} 
+					{{ form_label(form.alertFirstEpisode)}} 
+				</label>
+				<label class="checkbox-inline">
+					{{ form_widget(form.alertLastEpisode)}} 
+					{{ form_label(form.alertLastEpisode)}} 
+				</label>
+			</div>
+			
+		</div>
+		{% endif %}
+		<div class="row part_form">
+			<div class="col-md-2 part_form_title vcenter">				
+					<p>
+						Avancement
+					</p>
+			</div><!--	
+			--><div class="col-md-10 part_form_content vcenter">
+				
+				<div class="row">
+					<div class="col-md-6">
+						<div class="sliderSeasonSeen"></div>
+					</div>
+					<div class="col-md-5">
+						<div class="sliderEpisodeSeen"></div>
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-md-12" style="margin-top:10px">
+						{% if nbSeasonSeen == 0 %}
+							<span id="season_result">Aucun épisode vu</span>
+						{% elseif nbSeasonSeen == serie.nbSeasons and nbEpisodeSeen == serie.nbEpisodesInSeason(nbSeasonSeen) and nbSeasonSeen == serie.nbSeasons and serie.status == "Ended" %}
+							<span id="season_result"></span>
+						{% else %}
+							<span id="season_result">Saison {{ nbSeasonSeen }}</span>
+						{% endif %}
+						
+						{% if nbEpisodeSeen > 0 %}
+							{% if nbSeasonSeen == serie.nbSeasons and nbEpisodeSeen == serie.nbEpisodesInSeason(nbSeasonSeen) and nbSeasonSeen == serie.nbSeasons and serie.status == "Ended" %}
+								<span id="episode_result" style="color:red">Série terminée</span>								
+							{% else %}
+								<span id="episode_result">Episode {{ nbEpisodeSeen }}</span>
+							{% endif %}
+						{% else %}
+							<span id="episode_result"></span>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+		 
+		<div class="row" >
+			<div class="col-md-12">	
+				<div class="form-group">
+				{{ form_errors(form.comment) }}
+					{{ form_widget(form.comment, { 'attr': {'class': 'form-control modal_comment', 'placeholder': 'Commentaire' }}) }}
+				</div>
+			</div>
+		</div>
+		<div class="row" >
+			<div class="col-md-12" style="text-align:right">
+				<button type="button" id="cancelAction" class="btn btn-danger">Annuler</button>
+				{% if typeForm == "add" %}								
+					<button type="button" id="submitAdd" class="btn btn-primary">Ajouter à ma collection</button>
+				{% else %}
+					<button type="button" id="submitUpdate" class="btn btn-primary">Modifier</button>
+				{% endif %}
+			</div>
+		</div>
+		</form>
+	</div>
+{% endblock %}				

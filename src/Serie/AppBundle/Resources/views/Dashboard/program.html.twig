@@ -1,0 +1,73 @@
+<div class="row">
+<div id="jMonthCalendar" style="height:495px"></div>
+
+    <script>
+        $().ready(function() {
+			var options = {
+				onMonthChanging: function(dateIn) {
+				},
+				onEventLinkClick: function(event) { 
+					alert('event link click');
+					return true; 
+				},
+				onEventBlockClick: function(event) { 
+					alert('block clicked');
+					return true; 
+				},
+				onEventBlockOver: function(event) {
+					// alert(event.Title + ' - ' + event.Description);
+					return true;
+				},
+				onEventBlockOut: function(event) {
+					return true;
+				},
+				onDayLinkClick: function(event) { 
+					// alert(event.data.Date.toLocaleDateString());
+				},
+				onDayCellDblClick: function(event) {
+					alert(event.data.Date.toLocaleDateString());
+				}
+			};
+			
+			
+			var events = [ 	{ 'EventID': 1, 'StartDateTime': 'new Date(2016, 1, 5)', 'EndDateTime': 'new Date(2016, 1, 5)', 'Title': '<img width="100%" src="{{ asset("upload/banner/graphical/71663-g24.jpg") }}" alt="test" />', 'URL': 'www.i.c', 'Description': 'S04E05' },
+							{ 'EventID': 10, 'StartDateTime': 'new Date(2016, 1, 5)', 'EndDateTime': 'new Date(2016, 1, 5)', 'Title': '<img width="100%" src="{{ asset("upload/banner/graphical/75760-g2.jpg") }}" alt="test" />', 'URL': 'www.i.c', 'Description': 'S04E05' },
+							{ 'EventID': 11, 'StartDateTime': 'new Date(2016, 1, 5)', 'EndDateTime': 'new Date(2016, 1, 5)', 'Title': '<img width="100%" src="{{ asset("upload/banner/graphical/75897-g7.jpg") }}" alt="test" />', 'URL': 'www.i.c', 'Description': 'S04E05' },
+							{ 'EventID': 6, 'StartDateTime': 'new Date(2009, 6, 29)', 'EndDateTime': 'new Date(2009, 5, 3)', 'Title': '10:00 pm - EventTitle6', 'URL': 'www.i.c', 'Description': 'This is a sample event description' },
+							{ 'EventID': 7, 'StartDateTime': new Date(2009, 6, 12), 'Title': '10:00 pm - EventTitle7', 'URL': 'www.i.c', 'Description': 'This is a sample event description' },
+							{ 'EventID': 3, 'StartDateTime': '2009-07-28T12:30:00.0000000', 'Title': 'This is a much longer title', 'URL': 'www.i.c', 'Description': 'This is a sample event description', 'CssClass': 'Meeting' },
+							{ 'EventID': 4, 'StartDateTime': new Date(2009, 6, 13), 'Title': 'This is a much longer title', 'URL': 'www.i.c', 'Description': 'This is a sample event description', 'CssClass': 'Meeting' },
+							{ 'EventID': 5, 'StartDateTime': '2009-06-03', 'EndDateTime': '2009-06-14', 'Title': 'This is a much longer title', 'URL': 'www.i.c', 'Description': 'This is a sample event description', 'CssClass': 'Meeting' }
+			];
+			
+			$.jMonthCalendar.Initialize(options, events);
+			
+			
+				
+        });
+    </script>
+	<!--<table class="table" style="border:1px solid white;">
+	   <thead class="thead_program">
+			<tr>
+				<th>Lundi</th>
+				<th>Mardi</th>
+				<th>Mercredi</th>
+				<th>Jeudi</th>
+				<th>Vendredi</th>
+				<th>Samedi</th>
+				<th>Dimanche</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Jill {{ day}} </td>
+				<td>Smith</td>
+				<td>50</td>
+				<td>Jill</td>
+				<td>Smith</td>
+				<td>50</td>
+				<td>50</td>
+			</tr>
+		</tbody>
+	</table>--> 
+</div>

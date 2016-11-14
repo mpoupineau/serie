@@ -1,0 +1,253 @@
+    <div class="sidebar-nav" >
+      <div class="navbar navbar-default" style="border:0px" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="visible-xs navbar-brand">Filtre</span>
+        </div>
+        <div class="navbar-collapse collapse sidebar-navbar-collapse" style="background:#33334400;border:0px">
+  <div id="menu">
+<div class="panel list-group" style="border:0px">
+	<a href="#" class="list-group-item" data-toggle="collapse" data-target="#sm" data-parent="#menu">
+		<span style="color:#0099ff" class="glyphicon glyphicon-calendar pull-right"></span>
+		PREMIERE DIFFUSION <br/>
+		<span id="label_years"></span>
+	</a>
+	<div id="sm" class="collapse part_form_filter">
+		<img class="loading2" src="{{ asset('images/loading.gif') }}" alt="loading" />
+		<div class="div_filter_submit">
+			<a class="filter_submit" href="javascript:"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+		</div>
+		<div class="inside_part_form_filter">
+			<p>
+				<input type="text" id="years_range" readonly >
+			</p>		 
+			<div id="slider-range-years"></div>
+		</div>
+	</div>
+	<a href="#"  class="list-group-item" data-toggle="collapse" data-target="#sl" data-parent="#menu">
+		<span style="color:#0099ff" class="glyphicon glyphicon-tags pull-right"></span>
+		GENRE <br/>
+		<span id="label_category"></span>
+	</a>
+	<div id="sl" class="collapse part_form_filter">
+		<img class="loading2" src="{{ asset('images/loading.gif') }}" alt="loading" />
+		<div class="div_filter_submit">
+			<a class="filter_submit" href="javascript:"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+		</div>
+		<div class="inside_part_form_filter">
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_action" checked value="action">
+							Action
+					  </label>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_animation" checked value="animation">
+							Animation
+					  </label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_adventure" checked value="aventure">
+							Aventure
+					  </label>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_comedy" checked value="comédie">
+							Comédie
+					  </label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_crime" checked value="crime">
+							Crime
+					  </label>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_drama" checked value="drame">
+							Drame
+					  </label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_children" checked value="enfant">
+							Enfant
+					  </label>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_family" checked value="famille">
+							Famille
+					  </label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_fantasy" checked value="fantaisie">
+							Fantaisie
+					  </label>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_horror" checked value="horreur">
+							Horreur
+					  </label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-5">			
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_mini_serie" checked value="mini-série">
+							Mini-série
+					  </label>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_mystery" checked value="mistère">
+							Mistère
+					  </label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_reality" checked value="réalité">
+							Réalité
+					  </label>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_romance" checked value="romance">
+							Romance
+					  </label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_science_fiction" checked value="science-fiction">
+							Science-fiction
+					  </label>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_suspense" checked value="suspense">
+							Suspense
+					  </label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_thriller" checked value="thriller">
+							Thriller
+					  </label>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox" id="check_western" checked value="western">
+							Western
+					  </label>
+					</div>
+				</div>
+			</div>
+			<div style="border-top:1px solid white;">
+				<a class="check_uncheck" href="javascript:checkAll()">Cocher</a> -
+				<a class="check_uncheck" href="javascript:uncheckAll()">Décocher</a>
+			</div>
+		</div>
+	</div>
+	<a href="#"  class="list-group-item" data-toggle="collapse" data-target="#sn" data-parent="#menu">
+		<span style="color:#0099ff" class="glyphicon glyphicon-star-empty pull-right"></span>
+		NOTE <br/>
+		<span id="label_rating"></span>
+	</a>
+	<div id="sn" class="collapse part_form_filter">
+		<img class="loading2" src="{{ asset('images/loading.gif') }}" alt="loading" />
+		<div class="div_filter_submit">
+			<a class="filter_submit" href="javascript:"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+		</div>
+		<div class="inside_part_form_filter">
+			<p>
+				<input type="text" id="rating_range" readonly >
+			</p>		 
+			<div id="slider-range-rating"></div>
+		</div>
+	</div>
+	<a href="#" class="list-group-item" data-toggle="collapse" data-target="#se" data-parent="#menu">
+		<span style="color:#0099ff" class="glyphicon glyphicon-expand pull-right"></span>
+		EN COURS <br/>
+		<span id="label_continuing"></span>
+	</a>
+	<div id="se" class="collapse part_form_filter">
+		<img class="loading2" src="{{ asset('images/loading.gif') }}" alt="loading" />
+		<div class="div_filter_submit">
+			<a class="filter_submit" href="javascript:"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+		</div>
+		<div class="inside_part_form_filter">
+			<label class="radio-inline">
+				<input type="radio" name="continuing" id="yes" value="oui"> OUI
+			</label>
+			<label class="radio-inline">
+				<input type="radio" name="continuing" id="no" value="non"> NON
+			</label>
+			<a class="check_uncheck" href="javascript:uncheckContinuing()">Décocher</a>
+		</div>
+	</div>
+</div>
+</div>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  

@@ -1,0 +1,19 @@
+services:
+    callRestManager:
+        class: Serie\DataBundle\Manager\CallRestManager
+        lazy: true
+
+    serieManager:
+        class: Serie\DataBundle\Manager\SerieManager
+        arguments: ['@callRestManager', '@episodeManager', '@actorManager', '@fm_file_management.filem', '@serieService', '@doctrine.orm.entity_manager']
+        lazy: true
+
+    episodeManager:
+        class: Serie\DataBundle\Manager\EpisodeManager
+        arguments: ['@callRestManager']
+        lazy: true
+
+    actorManager:
+        class: Serie\DataBundle\Manager\ActorManager
+        arguments: ['@callRestManager']
+        lazy: true

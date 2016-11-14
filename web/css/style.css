@@ -1,0 +1,725 @@
+@font-face { 
+  font-family: 'standard'; 
+  src: url('fonts/Capriola-Regular.ttf'); 
+}
+body{
+    /*background:#222233;*/
+    background: url('../wallpaper2.jpeg') repeat-x fixed;
+	margin-top:53px;
+	margin-right:10px;
+	color:white;
+	/*font-family: 'standard', Georgia, serif;*/
+}
+.main_container {
+}
+.loading {
+	width:25px;
+	margin-top:10px;
+	visibility:hidden;
+}
+.loading2 {
+	width:20px;
+	float:left;
+	margin:5px;
+	display:none;
+}
+.sar {
+	height:40px;
+}
+.title_column {
+	font-size:20px;
+	border-bottom:1px solid white;
+	border-left:5px solid #0099FF;
+	padding-bottom:5px;
+	padding-left:10px;
+	margin-top:10px;
+}
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+/************************* Navbar ***************************/
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .help-block{
+    font-size:12px    
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}
+
+/************************* hover poster serie ***************************/
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+.sideNav {
+	background:#555555;
+	border:0px;
+}
+.activeFilter a{
+	color:red;	
+}
+
+
+.hovereffect {
+	width:100%;
+	height:100%;
+	float:left;
+	overflow:hidden;
+	position:relative;
+	text-align:center;
+	cursor:default;
+}
+
+.shadow_effect {
+	box-shadow: 3px 3px 5px black;
+	border:1px solid black;
+	border-left:3px solid black;
+	transition:all 0.5s;
+}
+.shadow_effect_not_started {
+	box-shadow: 3px 3px 5px black;
+	border:1px solid #000000;
+	border-left:3px solid #00FF00;
+	transition:all 0.5s;
+}
+.shadow_effect_continuing {
+	box-shadow: 3px 3px 5px black;
+	border:1px solid #000000;
+	border-left:3px solid #FFD700;
+	transition:all 0.5s;
+}
+.shadow_effect_ended {
+	box-shadow: 3px 3px 5px black;
+	border:1px solid #000000;
+	border-left:3px solid #AA0000;
+	transition:all 0.5s;
+}
+.hovereffect .overlay {
+	width:100%;
+	height:100%;
+	position:absolute;
+	overflow:hidden;
+	top:0;
+	left:0;
+	opacity:0;
+	background-color:rgba(0,0,0,0.5);
+	-webkit-transition:all .4s ease-in-out;
+	transition:all .4s ease-in-out;
+}
+
+.poster {
+	width: 100%;
+	display:block;
+	position:relative;
+	-webkit-transition:all .4s linear;
+	transition:all .4s linear;
+}
+.addDeleteSerie {
+	float:right;
+	margin-right:3px;
+	margin-top:3px;
+}
+
+.hovereffect h2 {
+text-transform:uppercase;
+color:#fff;
+text-align:center;
+position:relative;
+font-size:14px;
+background:rgba(0,0,0,0.6);
+-webkit-transform:translatey(-100px);
+-ms-transform:translatey(-100px);
+transform:translatey(-100px);
+-webkit-transition:all .2s ease-in-out;
+transition:all .2s ease-in-out;
+padding:5px;
+
+}
+.shadow_effect h2 {
+	background:rgba(0,128,255,0.7);
+}
+.shadow_effect_collected h2 {
+	background:rgba(255,210,0,0.7);
+}
+.shadow_effect_not_started h2 {
+	background:rgba(0,255,0,0.7);
+}
+.shadow_effect_continuing h2 {
+	background:rgba(255,210,0,0.7);
+}
+.shadow_effect_ended h2 {
+	background:rgba(255,0,0,0.7);
+}
+.hovereffect a.info {
+text-decoration:none;
+display:inline-block;
+color:#fff;
+border:1px solid #fff;
+background-color:transparent;
+opacity:0;
+filter:alpha(opacity=0);
+-webkit-transition:all .2s ease-in-out;
+transition:all .2s ease-in-out;
+padding:7px 14px;
+}
+
+.hovereffect a.info:hover {
+box-shadow:0 0 5px #fff;
+background:rgba(0,0,0,0.7);
+}
+
+.hovereffect:hover img {
+-ms-transform:scale(1.1);
+-webkit-transform:scale(1.1);
+transform:scale(1.1);
+}
+
+.hovereffect:hover .overlay {
+opacity:1;
+filter:alpha(opacity=100);
+}
+
+.hovereffect:hover h2,.hovereffect:hover a.info {
+opacity:1;
+filter:alpha(opacity=100);
+-ms-transform:translatey(0);
+-webkit-transform:translatey(0);
+transform:translatey(0);
+}
+
+.hovereffect:hover a.info {
+-webkit-transition-delay:.2s;
+transition-delay:.2s;
+}
+
+/************************* Serie info ***************************/
+.banner {
+	box-shadow: 0px 0px 5px black;
+	margin-bottom:10px;
+}
+.serie_number {
+	color:white;
+	text-align:right;
+	padding-bottom:0px;
+}
+.serie_number span {
+	color:#0099ff;
+	font-size:40px;
+	font-weight:bold;
+}
+.year_serie {
+	font-size:30px;
+	color:#0099ff;
+}
+.fixed {
+	position:fixed;
+}
+.scrollit {
+	float:right;
+}
+.overview {
+	padding:10px 40px;	
+}
+.title_chapter {
+	font-weight:bold;
+	font-size:20px;
+	border-bottom:1px solid #0099ff;
+	color:#0099ff;
+	padding-bottom:10px;
+}
+.part_chapter {
+	/*box-shadow: 3px 3px 5px black;*/
+}
+.continuing, .ended {
+	font-size:30px;
+	font-weight:bold;
+	border-radius:5px;
+	padding:0px 10px;
+	color:white;
+}
+.continuing {
+	background:#00FF00
+}
+.ended {
+	background:red;
+}
+.nextEpisode {	
+	border:1px solid #0099ff;
+	padding:10px;
+	color:white;
+	text-align:center;
+	margin-top:10px;
+	background:#000000;
+	font-weight:bold;
+	border-radius:10px;
+}
+.nextEpisode:hover {
+	
+	box-shadow: 0px 0px 10px #0099ff;
+	transition:all ease 0.5s;
+}
+.row_actor:hover, .row_number:hover{
+	box-shadow: 0px 0px 10px #0099ff;
+	background:black;
+	transition:all ease 0.5s;
+}
+/*.col-md-12, .col-md-6 {
+	border:1px solid white;
+}*/
+/************************* Alert ***************************/
+.alert_error, .alert_success {
+	position:fixed;
+	right:20px;
+	top:70px;
+	width:20%;
+	z-index:4;
+	box-shadow: 0px 0px 10px black;
+	display:none;
+}
+.alert_error {
+	background:linear-gradient(#FFCCCC, #FFEEEE);
+	color:#990000;
+	border:1px solid #990000;
+}
+.alert_error .title_alert {
+	font-weight:bold;
+	margin-bottom:10px;
+	border-bottom:1px solid #990000;
+}
+.alert_success {
+	background:linear-gradient(#CCFFCC, #EEFFEE);
+	color:#009900;
+	border:1px solid #009900;
+}
+.alert_success:hover {
+	background:linear-gradient(#EEFFEE, #FFFFFF);
+	color:#009900;
+	border:1px solid #009900;
+}
+.alert_success .title_alert {
+	font-weight:bold;
+	margin-bottom:10px;
+	border-bottom:1px solid #009900;
+}
+/************************* autocomplete ***************************/
+
+ul.ui-autocomplete.ui-menu{
+	padding-top:9px;
+	border-radius:0px 0px 5px 5px;
+	box-shadow: 0px 5px 10px black;
+	min-width:300px;
+	background:#FFFFFF;
+}
+.result_search_serie {
+	background:#E6F4FF;
+	box-shadow: 0px 5px 10px black;
+	margin:10px;
+	margin-top:0px;	
+	padding:20px;
+	box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.6) inset;
+}
+.result_search_serie .poster{
+	border:1px solid #FFFFFF;
+	box-shadow: 2px 2px 5px black;
+}
+.result_search_serie .title{
+	margin-top:5px;
+	color:black;
+	text-align:center;
+	font-family:Georgia, serif;
+}
+.autocomplete_result {
+	background:#FFFFFF;
+	border-bottom:1px solid #999999;
+	padding:10px;
+	height:60px;
+	padding-right:30px;
+}
+.autocomplete_result:hover {
+	background:#DDDDDD;
+	border-bottom:1px solid #999999;
+}
+.autocomplete_result a:hover{
+	text-decoration:none;
+}
+.button_close {
+	background:#222233;
+	color:#0099ff;
+	padding:5px;
+	box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.6);
+}
+.img_autocomplete_result {
+	position:absolute;
+	right:10px;
+	height:50px;
+}
+.img_autocomplete_result:hover {
+	right:-150px;
+	height:300px;
+	z-index:4;
+	border:1px solid white;
+	box-shadow: 0px 0px 5px black;
+	transition:all 0.5s;
+}
+.text_autocomplete_result {
+	margin-right:40px;
+}
+/************************* Menu filtre ***************************/
+.part_form_filter {
+	background:#222233;
+	color:white;
+	border:1px solid white;
+}
+.inside_part_form_filter {
+	padding:30px 10px;
+}
+.title_menu:hover {
+	background:#222233;
+}
+.slider, #slider-range-rating, #slider-range-years {
+	height:20px;
+	border-radius: 15px;
+}
+.ui-widget-header {
+	border-radius: 15px;
+	background:#0099FF;
+	box-shadow: inset 0px 0px 10px 0.1px #556565;
+}
+.ui-widget-content .ui-state-default {
+	height:28px;
+	width:15px;
+	border-radius:5px;
+	cursor:pointer;
+}
+.ui-widget-content .ui-state-default:hover {
+	background:#DDDDFF;
+}
+.ui-widget-content .ui-state-default:focus, .ui-widget-content .ui-state-default:hover {
+		border:0px;
+}
+.ui-widget-content {
+	background:white;
+}
+#years_range, #rating_range {
+	width:100%;
+	text-align:center;
+	background:#222233;
+	border:0px;
+	border-bottom:1px solid white;
+}
+.div_filter_submit {
+	float:right;
+	background:#0099ff;
+	padding:5px 10px;
+	border-radius:0 0 0 5px;
+}
+.filter_submit {
+	color:white;
+	background:#0099ff;
+}
+.filter_submit:focus {
+	color:white;
+}
+.check_uncheck {
+	color:white;
+	padding:5px;
+}
+.check_uncheck:hover {
+	color:white;
+	text-decoration:none;
+}
+.check_uncheck:focus {
+	color:white;
+	text-decoration:none;
+}
+/************************* Add serie to collection ***************************/
+.rating a {
+	background:url('../images/star_empty.png');
+	width:50px;
+	height:50px;
+   float: right;
+   color: #aaa;
+   text-decoration: none;
+   font-size: 3em;
+   transition: color .4s;
+}
+.rating a:hover,
+.rating a:focus,
+.rating a:hover ~ a,
+.rating a:focus ~ a {
+   background:url('../images/star.png');
+   cursor: pointer;
+}
+/************************* Add serie to collection (slider) ***************************/
+
+/*Result div where the slider value is displayed*/
+#season_result, #episode_result {
+	font-family: 'standard', Georgia, serif;
+	color:#0099FF;
+	text-align:center;
+}
+/*.part_form {
+	border:1px solid #BBBBBB;
+	border-radius:5px;
+	margin:10px;
+}
+.part_form_title {
+	font-weight:bold;	
+	background:#0099ff;
+	color:white;
+	border-bottom:1px solid #BBBBBB;
+	padding:0px 10px;
+}
+.part_form_content {
+	padding:10px;
+}*/
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.part_form {
+	border:1px solid #0099FF;
+	/*border-radius:0px 5px 5px 0px;*/
+	margin-bottom:10px;
+	margin-right:5px;	
+}
+.part_form_title {
+	font-weight:bold;	
+	background:#0099FF;
+	color:white;
+	border:1px solid #FFFFFF;
+	vertical-align: middle;
+	padding:10px 2px;
+	text-align:left;
+}
+.part_form_content {
+	padding:5px 0px;
+	padding-left:10px;
+}
+.modal_poster {
+	box-shadow: 0px 0px 5px #000000;
+	width:100%;
+}
+.modal_title {
+	box-shadow: -2px 2px 5px #000000;
+	background:#0099FF;
+	padding-bottom:5px;
+	margin-top:10px;
+}
+.modal_title h2 {
+	color:#FFFFFF;
+	text-shadow:0 1px 1px #000000;
+	font-size:25px;
+}
+.modal_comment {
+	margin:0px;
+	border:0px;
+	border-radius:0px;
+	border-left:4px solid #0099FF;
+	min-height:70px;
+}
+.div_danger {
+	margin:20px 0px;
+	border:1px solid #DDDDDD;
+	border-left:5px solid #AA0000;
+	padding:15px;
+	color:#AA0000;
+}
+/************************* Dashboard ***************************/
+.dashboard h1 {
+	font-size:60px;
+	text-align:center;
+	color:#0099FF;
+	text-shadow:0 1px 1px #FFD700;
+	border-bottom:4px solid #0099FF;
+}
+.button_link a {
+	background:#0099ff;
+	box-shadow: 0px 0px 5px #AAAAAA;
+	color:white;
+	text-align: center;
+	height:80px;
+	display:block;
+	margin-bottom:10px;
+	font-size:20px;
+	padding-top:25px;
+	border-radius:5px;
+}
+.button_link a:hover {
+	box-shadow: 0px 0px 5px #8B008B;
+	border:1px solid white;
+	text-decoration:none;
+	color:white;
+	padding-top:24px;
+	text-shadow: 2px 2px 2px #000000;
+	transition:all 0.5s;
+}
+.button_link a:focus {
+	text-decoration:none;
+}
+.button_link_disabled a {
+	background:#004b7d;
+	color:#999999;
+	text-align: center;
+	height:80px;
+	display:block;
+	margin-bottom:10px;
+	font-size:20px;
+	padding-top:25px;
+	border-radius:5px;
+}
+.button_link_disabled a:hover {
+    text-decoration:none;
+}
+.button_link_disabled a:focus {
+    text-decoration:none;
+}
+/*************** Calendar ***************/
+table td {
+	border:1px solid white;
+	width:14%;
+}
+.thead_program {
+	background:#0099FF;
+	text-align:center;
+}
+.thead_program th {
+	text-align:center;
+}
+/*************** List new episode ***************/
+.date_listEpisode {
+	background:#00000;
+	color:#0099FF;
+	text-align:center;
+	border:1px solid #0099FF;
+	border-left:5px solid #0099FF;
+	border-right:5px solid #0099FF;
+	font-weight:bold;
+	margin-top:5px;
+	padding:5px;
+	border-radus:5px;
+}
+.item_list_episode {
+	background:#333344;
+	margin:2px 0px;
+	padding:3px;
+	border:1px solid #000000;
+}
+.item_list_episode:hover {
+	background:#0099ff;
+	color:white;
+	text-shadow: 2px 2px 2px #000000;
+	transition:all 0.5s;
+}
+.item_list_episode img {
+	border:1px solid #333344;
+	box-shadow: 2px 2px 5px #333344;
+}
+.item_list_episode .date_new_episode {
+	background:#333344;
+	border:1px solid #0099FF;
+	border-radius:7px;
+	text-align:center;
+	box-shadow: 2px 2px 5px #333344;
+}
+
+/*.date_listEpisode {
+	background:#333344;
+	color:#0099FF;
+	text-align:center;
+	border-bottom:4px solid #0099FF;
+	font-weight:bold;
+	margin-top:5px;
+	padding:5px;
+}*/
+/*************** List new episode ***************/
+.serieToSee {
+	border-bottom:3px solid #0099FF;
+	margin:5px 0px;
+	padding:0px;
+	
+}
+.serieToSee .serie_name{
+	font-family: 'standard', Georgia, serif;
+	color:#0099FF;
+	border-right:5px solid #0099FF;
+	margin-bottom:3px;
+}
+.serieToSee .poster{
+	width: 100%;
+}
+/*************** Suggestion ***************/
+.scrollable {
+	height: 90vh;
+	overflow-y: scroll;
+	position:fixed;
+}
+/************************* Collection ***************************/
+.title_category p {
+	font-size:25px;
+	margin:10px;
+	padding-left:20px;
+}
+.title_category .cat_to_begin {
+	border-left:5px solid #00FF00;
+	border-bottom:1px solid #FFFFFF;
+	color:#00FF00;
+}
+.title_category .cat_continuing {
+	border-left:5px solid #FFD700;
+	border-bottom:1px solid #FFFFFF;
+	color:#FFD700;
+}
+.title_category .cat_ended {
+	border-left:5px solid #FF0000;
+	border-bottom:1px solid #FFFFFF;
+	color:#FF0000;
+}
+.title_category .cat_other {
+	border-bottom:1px solid #FFFFFF;
+	border-left:5px solid #0099FF;
+	color:#FFFFFF;
+}

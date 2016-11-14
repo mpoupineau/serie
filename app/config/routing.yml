@@ -1,0 +1,54 @@
+serie_admin:
+    resource: "@SerieAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+serie_user:
+    resource: "@SerieUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+serie_data:
+    resource: "@SerieDataBundle/Resources/config/routing.yml"
+    prefix:   /
+
+serie_app:
+    resource: "@SerieAppBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fm_file_management:
+    resource: "@FMFileManagementBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+serie_app:
+    resource: "@SerieAppBundle/Controller"
+    type: annotation
+    
+serie_data:
+    resource: "@SerieDataBundle/Controller"
+    type: annotation
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+fos_user_security:
+
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile

@@ -1,0 +1,32 @@
+
+<div class="row scrollable">
+<p class="title_column">Suggestion</p>
+{% for serie in list_series %}
+	<div id="serie_{{ serie.id }}" class="col-md-12 col-lg-6" style="margin-bottom:10px;">
+		<div class="hovereffect shadow_effect" >
+			{% if serie.poster != "" %}
+				<img class="poster" src="{{ asset('upload/poster/'~ serie.poster ~'') }}" alt="{{ serie.name }}" />
+			{% else %}
+				<img class="poster" src="{{ asset('images/default_poster.jpg') }}" alt="{{ serie.name }}" />
+			{% endif %}
+				<div class="overlay">
+					
+					<p class="addDeleteSerie">
+						{% if not serie.inCollection(app.user.id) %}
+						<a href="javascript:getModalForm({{serie.id}})"><img src="{{ asset('images/add.png') }}" alt="add" /></a>
+						{% else %}
+						<a href="javascript:deleteCollected({{serie.id}},{{app.user.id}})"><img src="{{ asset('images/delete.png') }}" alt="sup" /></a>
+						{% endif %}
+					</p>
+					
+					<br/><br/>
+					<h2>{{ serie.name }}</h2>
+					<p> 
+						<a class="info" href="serie/{{ serie.slug }}">fiche</a>									
+					</p> 
+				</div>
+		</div>
+	</div>	
+{% endfor %}
+
+</div>

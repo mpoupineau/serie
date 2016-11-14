@@ -1,0 +1,149 @@
+{% set old_status = "none" %}
+{% set min_rated = 20 %}
+{% set old_firstAired = 0 %}
+{% set old_nbSeasons = -1 %}
+{% for collected in collecteds %}
+
+	<!----------------------------------------  Sort By Status  -------------------------------------->
+	{% if type_sort == "status" %} 
+		{% if collected.status != old_status %}	
+			{% if old_status != "none" %}
+			</div>
+			{% endif %}
+			<div class="row title_category">
+			{% if collected.status == "Not started"  %}
+				<p class="cat_to_begin">Non commencée<p>
+			{% elseif collected.status == "Continuing" %}
+				<p class="cat_continuing">En cours<p>
+			{% elseif collected.status == "Ended" %}
+				<p class="cat_ended">Terminée<p>
+			{% endif %}
+			</div>
+			<div class="row">
+		{% endif %}
+		{% set old_status = collected.status %}
+	{% endif %}
+		
+	
+	<!----------------------------------------  Sort By Rating  -------------------------------------->
+	{% if type_sort == "rated" %}
+		{% if collected.rated < min_rated %}
+		
+			{% if min_rated < 10 %}
+			</div>
+			{% endif %}
+			<div class="row title_category">
+			{% if collected.rated > 9.5 %}
+			<p class="cat_other">
+				<img src="{{ asset('images/star.png') }}" class="star"/><!--
+				--><img src="{{ asset('images/star.png') }}" class="star"/><!--
+				--><img src="{{ asset('images/star.png') }}" class="star"/><!--
+				--><img src="{{ asset('images/star.png') }}" class="star"/><!--
+				--><img src="{{ asset('images/star.png') }}" class="star"/><!--
+				-->
+			</p>
+				{% set min_rated = 9.5 %}
+			{% elseif collected.rated > 7.5 %}
+			<p class="cat_other">
+				<img src="{{ asset('images/star.png') }}" class="star"/><!--
+				--><img src="{{ asset('images/star.png') }}" class="star"/><!--
+				--><img src="{{ asset('images/star.png') }}" class="star"/><!--
+				--><img src="{{ asset('images/star.png') }}" class="star"/><!--
+				-->
+			</p>
+				{% set min_rated = 7.5 %}
+			{% elseif collected.rated > 5.5 %}
+			<p class="cat_other">
+				<img src="{{ asset('images/star.png') }}" class="star"/><!--
+				--><img src="{{ asset('images/star.png') }}" class="star"/><!--
+				--><img src="{{ asset('images/star.png') }}" class="star"/>
+			</p>
+				{% set min_rated = 5.5 %}
+			{% elseif collected.rated > 3.5 %}
+			<p class="cat_other">
+				<img src="{{ asset('images/star.png') }}" class="star"/><!--
+				--><img src="{{ asset('images/star.png') }}" class="star"/>
+			</p>
+				{% set min_rated = 3.5 %}
+			{% elseif collected.rated > 0.5 %}
+			<p class="cat_other">
+				<img src="{{ asset('images/star.png') }}" class="star"/>
+			</p>
+				{% set min_rated = 0.5 %}
+			{% else %}
+				<p class="cat_ended">Non notée<p>
+				{% set min_rated = 0 %}
+			{% endif %}
+			</div>
+			<div class="row">
+		{% endif %}
+	{% endif %}
+	
+	<!----------------------------------------  Sort By First Aired  -------------------------------------->
+	{% if type_sort == "firstAired" %} 
+		{% if collected.serie.firstAired|date('Y') != old_firstAired %}	
+			{% if old_firstAired != 0 %}
+			</div>
+			{% endif %}
+			<div class="row title_category">
+				<p class="cat_other">{{ collected.serie.firstAired|date('Y') }}<p>
+			</div>
+			<div class="row">
+		{% endif %}
+		{% set old_firstAired = collected.serie.firstAired|date('Y') %}
+	{% endif %}
+	
+	<!----------------------------------------  Sort By nb seasons  -------------------------------------->
+	{% if type_sort == "nbSeasons" %} 
+		{% if collected.serie.nbSeasons != old_nbSeasons %}	
+			{% if old_nbSeasons != -1 %}
+			</div>
+			{% endif %}
+			<div class="row title_category">
+				<p class="cat_other">{{ collected.serie.nbSeasons }}
+				{% if collected.serie.nbSeasons < 2 %}
+					saison
+				{% else %}
+					saisons
+				{% endif %}
+				<p>
+			</div>
+			<div class="row">
+		{% endif %}
+		{% set old_nbSeasons = collected.serie.nbSeasons %}
+	{% endif %}
+	
+	
+	<div id="serie_{{ collected.serie.id }}" class="col-xs-6 col-md-2" style="margin-bottom:10px;">
+			{% if collected.status == "Not started"  %}
+			<div class="hovereffect shadow_effect_not_started " >
+			{% elseif collected.status == "Continuing" %}
+			<div class="hovereffect shadow_effect_continuing " >
+			{% else %}
+			<div class="hovereffect shadow_effect_ended " >
+			{% endif %}
+			
+			{% if collected.serie.poster != "" %}
+				<img class="poster" src="{{ asset('upload/poster/'~ collected.serie.poster ~'') }}" alt="{{ collected.serie.name }}" />
+			{% else %}
+				<img class="poster" src="{{ asset('images/default_poster.jpg') }}" alt="{{ collected.serie.name }}" />
+			{% endif %}
+				<div class="overlay">
+					
+					<p class="addDeleteSerie">
+						<a href="javascript:getModalForm({{collected.serie.id}},{{app.user.id}})"><img src="{{ asset('images/update.png') }}" alt="MAJ" /></a>
+						<a href="javascript:deleteCollected({{collected.serie.id}},{{app.user.id}})"><img src="{{ asset('images/delete2.png') }}" alt="sup" /></a>
+					</p>
+					
+					<br/><br/>
+					<h2>{{ collected.serie.name }}</h2>
+					<p> 
+						<a class="info" href="serie/{{ collected.serie.slug }}">fiche</a>									
+					</p> 
+				</div>
+		</div>
+	</div>	
+		
+		
+	
+{% endfor %}

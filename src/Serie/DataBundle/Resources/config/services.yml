@@ -1,0 +1,13 @@
+services:
+    fm_file_management.filem:
+        class: FM\FileManagementBundle\FileM\FileM
+    serieService:
+        class: Serie\DataBundle\Service\SerieService
+        arguments: ['@doctrine.orm.entity_manager']
+        lazy: true
+    baseService:
+        class: Serie\DataBundle\Service\BaseService
+        arguments: ['@doctrine.orm.entity_manager']
+        lazy: true
+
+    

@@ -1,0 +1,51 @@
+function autocomplete_data()
+{
+  $(function() {
+    var availableTags = [
+	{% for serie in series %}
+		{% if serie.poster != "" %}
+		{ value : '{{ serie.name }}', label : '{{ serie.name }}', slug : '{{serie.slug}}', icon : '{{ asset('upload/poster/'~ serie.poster ~'') }}' },
+		{% else %}
+		{ value : '{{ serie.name }}', label : '{{ serie.name }}', slug : '{{serie.slug}}', icon : '{{ asset('images/default_poster.jpg') }}' },
+		{% endif %}
+	  {% endfor %}
+    ];
+    $( "#serie_name" ).autocomplete({
+      source: function(request, response) {
+        var results = $.ui.autocomplete.filter(availableTags, request.term);
+        
+        response(results.slice(0, 8));
+    },
+	  minLength : 1 ,
+	  delay: 200,
+	  select : function(event, ui){ // lors de la sélection d'une proposition
+		url = "http://localhost/Symfony2/web/app_dev.php/serie/"+ui.item.slug;
+		$(location).attr("href", url);
+		}
+    });
+	$( "#serie_name" ).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+    
+    var $li = $('<li>'),
+        $img = $('<img>'),
+		$span_label = $('<span>');
+
+	$span_label.attr({
+		  class: 'text_autocomplete_result'
+	});
+    $img.attr({
+      src: item.icon,
+      alt: item.label,
+	  class: 'img_autocomplete_result'
+    });
+	$li.attr({
+	  class: 'autocomplete_result'
+    });
+	$span_label.append(item.label);
+    $li.attr('data-value', item.label);
+    $li.append('<a href="#"> ');
+    $li.find('a').append($img).append($span_label);    
+
+    return $li.appendTo(ul);
+  };
+});
+}

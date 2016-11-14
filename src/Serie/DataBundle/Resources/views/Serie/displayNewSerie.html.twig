@@ -1,0 +1,32 @@
+<div class="container-fluid result_search_serie">
+	
+	{% set i = 0 %}
+	{% for serie in list_series %}
+		{% if i == 0%}
+			<div class="row">
+		{% endif %}
+		<div class="col-md-1" style="margin-bottom:10px;">				
+			<a href="{{ path('serie_app_serieinfo', { 'slug': serie.slug }) }}">
+				{% if serie.poster != "" %}
+					<img class="poster" src="{{ asset('upload/poster/'~ serie.poster ~'') }}" alt="{{ serie.name }}" />
+				{% else %}
+					<img class="poster" src="{{ asset('images/default_poster.jpg') }}" alt="{{ serie.name }}" />
+				{% endif %}
+				<p class="title">
+					{{ serie.name }}
+				</p>
+			</a>
+		</div>	
+		{% set i = i+1 %}
+		{% if i == 12 %}
+			</div>
+			{% set i = 0 %}
+		{% endif %}
+	{% endfor %}
+	{% if i != 0 %}
+		</div>
+	{% endif %}
+	<div class="row" style="text-align:center">
+		<a href="javascript:closeSearchSerie()" class="button_clse">Fermer</>
+	</div>
+</div>

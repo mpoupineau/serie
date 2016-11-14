@@ -1,0 +1,64 @@
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" style="color:#0099FF;" href="#">Series</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="{{path('serie_app_seriepage')}}">Bibliothèque</a></li>
+        <li><a href="{{path('serie_app_dashboard')}}">Mon tableau de bord</a></li>
+      </ul>
+      <form class="navbar-form navbar-left" id="form_search_serie" method="post" role="search">
+        <div class="form-group">
+		<div class="input-group">
+          <input type="text" class="form-control left-rounded" required placeholder="Rechercher une série" id="serie_name">
+        <div class="input-group-btn">
+        <button type="submit" style="background:#0099FF;" class="btn right-rounded"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+		</div></div>
+		</div>
+      </form>
+	  <img class="loading" src="{{ asset('images/loading.gif') }}" alt="loading" />
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>{{ app.user.username }}</b> <span class="caret"></span></a>
+			<ul id="login-dp" class="dropdown-menu">
+				<li>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="bottom text-center">
+                                <a href="{{ path('fos_user_security_logout') }}"><b>Se déconnecter</b></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+			{% else %}
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Se connecter</b> <span class="caret"></span></a>
+			<ul id="login-dp" class="dropdown-menu">
+				<li>
+					 <div class="row">
+							<div class="col-md-12">
+								{{ render(controller('FOSUserBundle:Security:login')) }}
+							</div>
+							<div class="bottom text-center">
+								Nouveau ? <a href="#"><b>Créer un compte</b></a>
+							</div>
+					 </div>
+				</li>
+			</ul>
+			{% endif %}
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

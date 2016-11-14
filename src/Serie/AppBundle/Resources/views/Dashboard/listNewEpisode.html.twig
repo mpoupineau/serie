@@ -1,0 +1,54 @@
+<ul class="nav nav-pills nav-justified" id="myTab">
+  <li class="active"><a data-toggle="tab" href="#justifmenu1">Episodes</a></li>
+  <li><a data-toggle="tab" href="#justifmenu2">Saisons</a></li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div id="justifmenu1" class="tab-pane fade active in">
+{% set oldDate = date('-1 day') %}
+{% for collected in collectedsNextEpisode %}
+	{% if collected.serie.nextEpisode and collected.status != "Ended" %}
+		{% if oldDate != collected.serie.nextEpisode.firstAired %}
+			<div class="row title_column">				
+				{{ collected.serie.nextEpisode.firstAired|localizeddate('none', 'none', null, null, 'EEEE d MMMM Y')}}				
+			</div>
+		{% endif %}
+			<div class="row item_list_episode">
+				<div class="col-md-8">
+					<img width="40px" src="{{ asset('upload/poster/'~ collected.serie.poster ~'') }}" alt="{{ collected.serie.name }}" />
+					{{ collected.serie.name}}
+				</div>
+				<div class="col-md-3 date_new_episode">
+				S{{ collected.serie.nextEpisode.seasonNumber < 10 ? '0' ~ collected.serie.nextEpisode.seasonNumber : collected.serie.nextEpisode.seasonNumber }}E{{ collected.serie.nextEpisode.episodeNumber < 10 ? '0' ~ collected.serie.nextEpisode.episodeNumber : collected.serie.nextEpisode.episodeNumber }}				
+				</div>
+			</div>
+		{% set oldDate = collected.serie.nextEpisode.firstAired %}
+	{% endif %}
+{% endfor %}
+  </div>
+  <div id="justifmenu2" class="tab-pane fade">
+{% set oldDate = date('-1 day') %}
+{% for collected in collectedsNextSaison %}
+	{% if collected.serie.nextSaison and collected.status != "Ended"  %}
+		{% if oldDate != collected.serie.nextSaison.firstAired %}
+			<div class="row">
+				<p class="date_listEpisode">
+				{{ collected.serie.nextSaison.firstAired|localizeddate('none', 'none', null, null, 'EEEE d MMMM Y')}}
+				</p>
+			</div>
+		{% endif %}
+			<div class="row" style="background:black">
+				<div class="col-md-8">
+					<img width="40px" src="{{ asset('upload/poster/'~ collected.serie.poster ~'') }}" alt="{{ collected.serie.name }}" />
+					{{ collected.serie.name}}
+				</div>
+				<div class="col-md-4">
+				Saison {{ collected.serie.nextSaison.seasonNumber }}
+				</div>
+			</div>
+		{% set oldDate = collected.serie.nextSaison.firstAired %}
+	{% endif %}
+{% endfor %}
+  </div>
+</div>
+
+

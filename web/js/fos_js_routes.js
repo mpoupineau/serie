@@ -1,0 +1,1 @@
+fos.Router.setData({"base_url":"","routes":{"serie_data_formnewcollected":{"tokens":[["text","\/lala"]],"defaults":[],"requirements":[],"hosttokens":[]}},"prefix":"","host":"localhost","scheme":"http"});

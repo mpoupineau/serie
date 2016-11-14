@@ -1,0 +1,45 @@
+{% extends "SerieAppBundle::modalLayout.html.twig" %}
+
+{% block script %}
+<script>
+$(function() {
+	cancelAction();
+	submitDelete("{{ asset('images/') }}");
+});
+
+</script>
+{% endblock %}
+
+
+{% block body %}
+	<div class="col-md-4 vceter">
+{% if serie.poster != "" %}
+	<img  class="modal_poster"  src="{{ asset('upload/poster/'~ serie.poster ~'') }}" alt="{{ serie.name }}" />
+{% endif %}
+	</div><!--
+	--><div class="col-md-8 vcnter">
+		<div class="row modal_title">
+			<div class="col-md-6">
+				<h2>{{ serie.name }}</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-11">
+				<div class="div_danger">
+					<p>
+						Etes-vous sur de vouloir supprimer la série {{ serie.name }} de votre collection?
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row" >
+			<div class="col-md-12" style="text-align:right">
+				<input type="hidden" readonly id="delete_serieId" value="{{ serie.id }}" />
+				<input type="hidden" readonly id="delete_collectedId" value="{{ collected_id }}" />
+				<input type="hidden" readonly id="delete_userId" value="{{ app.user.id }}" />
+				<button type="button" id="cancelAction" class="btn btn-danger">Annuler</button> 
+				<button type="button" id="submitDelete" class="btn btn-primary">Supprimer de ma collection</button>
+			</div>
+		</div>
+	</div>
+{% endblock %}				

@@ -1,0 +1,22 @@
+{% extends "SerieAppBundle::layout.html.twig" %}
+
+{% block title %}Bibliothèque{% endblock %}
+
+{% block body %}
+<div class="container-fluid main_container">
+	<div class="row">
+		<div class="col-sm-2 col-md-2">
+			{{ include("SerieAppBundle::menuLibrary.html.twig") }}
+		</div>
+		<div class="col-sm-10 col-md-10" id="bloc_serie" style="display:none">
+				{{ render(controller('SerieAppBundle:Library:getSeriesFilter')) }}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{{ asset('js/filter.js') }}"></script>
+{% endblock %}
