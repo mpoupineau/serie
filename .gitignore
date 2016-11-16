@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /app/config/parameters.yml
 /build/
 /phpunit.xml
@@ -15,7 +15,7 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-=======
+
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
@@ -62,6 +62,9 @@
 # Composer PHAR
 /composer.phar
 
+# upload
+/web/upload
+
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
->>>>>>> 4e89620c4e910dbd5f4f05f326d3cd3ded538b60
+

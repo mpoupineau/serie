@@ -224,6 +224,7 @@ function autocomplete_data()
 			  				{ value : 'Stranger Things', label : 'Stranger Things', slug : 'stranger-things', icon : '/Symfony2/web/upload/poster/posters/305288-4.jpg' },
 			  				{ value : 'The Man in the High Castle', label : 'The Man in the High Castle', slug : 'the-man-in-the-high-castle', icon : '/Symfony2/web/upload/poster/posters/295829-14.jpg' },
 			  				{ value : '** 403: Series Not Permitted **', label : '** 403: Series Not Permitted **', slug : '403-series-not-permitted', icon : '/Symfony2/web/upload/poster/default/.jpg' },
+			  				{ value : 'Falling Water', label : 'Falling Water', slug : 'falling-water', icon : '/Symfony2/web/upload/poster/posters/311917-5.jpg' },
 			      ];
     $( "#serie_name" ).autocomplete({
       source: function(request, response) {

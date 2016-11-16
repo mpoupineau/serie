@@ -5,7 +5,6 @@ namespace Serie\DataBundle\Manager;
 use Serie\DataBundle\Entity\Serie;
 use Serie\DataBundle\Service\SerieService;
 use FM\FileManagementBundle\FileM\FileM;
-use Doctrine\ORM\EntityManager;
 
 class SerieManager {
     
@@ -19,21 +18,18 @@ class SerieManager {
     private $fileManager;
     
     private $serieService;
-    private $entityManager;
     
     public function __construct(CallRestManager $callRestManager, 
                                 EpisodeManager $episodeManager,
                                 ActorManager $actorManager,
                                 FileM $fileManager,
-                                SerieService $serieService,
-                                EntityManager $entityManager) 
+                                SerieService $serieService) 
     {
         $this->callRestManager = $callRestManager;
         $this->episodeManager = $episodeManager;
         $this->actorManager = $actorManager;
         $this->fileManager = $fileManager;
         $this->serieService = $serieService;
-        $this->entityManager = $entityManager;
     }
 
     public function searchSeries($name) {
@@ -60,8 +56,9 @@ class SerieManager {
                 return count($infoSearchSeries->data);
             }
             foreach ($infoSearchSeries->data as $infoSearchSerie) {
-                $repository = $this->entityManager->getRepository('SerieDataBundle:Serie');
-                $serie = $repository->findOneBy(array("idDB" => $infoSearchSerie->id));
+                //$repository = $this->entityManager->getRepository('SerieDataBundle:Serie');
+                //$serie = $repository->findOneBy(array("idDB" => $infoSearchSerie->id));
+                $serie = $this->serieService->findOneBy(array("idDB" => $infoSearchSerie->id));
                 if($serie) {
                     $series[] = $serie;
                 }

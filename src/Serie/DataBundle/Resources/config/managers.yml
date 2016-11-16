@@ -5,7 +5,7 @@ services:
 
     serieManager:
         class: Serie\DataBundle\Manager\SerieManager
-        arguments: ['@callRestManager', '@episodeManager', '@actorManager', '@fm_file_management.filem', '@serieService', '@doctrine.orm.entity_manager']
+        arguments: ['@callRestManager', '@episodeManager', '@actorManager', '@fm_file_management.filem', '@serieService']
         lazy: true
 
     episodeManager:
