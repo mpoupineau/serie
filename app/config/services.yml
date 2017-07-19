@@ -4,10 +4,10 @@ parameters:
 #    parameter_name: value
 
 services:
-    serieuser.form.registration:
-        class: Serie\UserBundle\Form\RegistrationType
+    user.form.registration:
+        class: UserBundle\Form\RegistrationType
         tags:
-            - { name: form.type, alias: serie_user_registration }
+            - { name: form.type, alias: user_registration }
     twig.extension.intl:
        class: Twig_Extensions_Extension_Intl
        tags:

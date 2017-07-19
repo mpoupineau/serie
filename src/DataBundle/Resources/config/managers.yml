@@ -1,0 +1,20 @@
+services:
+    callRestManager:
+        class: DataBundle\Manager\CallRestManager
+        arguments: ['@callApiLogService']
+        lazy: true
+
+    serieManager:
+        class: DataBundle\Manager\SerieManager
+        arguments: ['@callRestManager', '@episodeManager', '@actorManager', '@fm_file_management.filem', '@serieService']
+        lazy: true
+
+    episodeManager:
+        class: DataBundle\Manager\EpisodeManager
+        arguments: ['@callRestManager', '@episodeService']
+        lazy: true
+        
+    actorManager:
+        class: DataBundle\Manager\ActorManager
+        arguments: ['@callRestManager']
+        lazy: true        

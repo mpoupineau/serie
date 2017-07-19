@@ -1,13 +1,21 @@
+var url = "http://localhost/Symfony2/web/app_dev.php/";
+function add(serie_id) {
+    getModalForm(serie_id, "add");
+}
+
+function update($serie_id) {
+    getModalForm($serie_id, "update")
+}
 /* ************************  Créer form ajout série ************************************ */
-function getModalForm(serie_id, user_id)
+function getModalForm(serie_id, action)
 {
 	$("#results").hide(500);
 	$('.loading').show();
 	$.ajax({
-       url : "http://localhost/Symfony2/web/app_dev.php/form_new_collected",
+       url : url+"form_new_collected",
       // url : "http://localhost/Symfony2/web/app_dev.php"+Routing.generate('serie_data_formnewcollected'),
 	   type : "POST",
-	   data : 'serie_id=' + serie_id+'&user_id=' + user_id,
+	   data : 'serie_id=' + serie_id+'&action=' + action,
        success : function(data){ // code_html contient le HTML renvoyé           
 			$("#add_serie").html(data);
 			$('.bs-example-modal-lg').modal('show');
@@ -28,11 +36,10 @@ function submitDelete(imagePath)
 		$('.bs-example-modal-lg').modal('hide');
 		var collected_id  = $('#delete_collectedId').val();
 		var serie_id  = $('#delete_serieId').val();
-		var user_id  = $('#delete_userId').val();
 		var confirmation = true;
 		$("#results").hide(500);
 		$.ajax({
-			url : "http://localhost/Symfony2/web/app_dev.php/delete_collected",
+			url : url+"delete_collected",
 			// url : "http://localhost/Symfony2/web/app_dev.php"+Routing.generate('serie_data_formnewcollected'),
 			type : "POST",
 			data : 'collected_id=' + collected_id +'&confirmation=' + confirmation,
@@ -46,10 +53,10 @@ function submitDelete(imagePath)
 					$("#serie_"+serie_id).remove();
 				else if (url_path.indexOf("/serie/") >= 0) {
 					delete_action_serieInfo(serie_id);
-					updateColor(serie_id, data.css_status, 'none', user_id, imagePath);
+					updateColor(serie_id, data.css_status, 'none', imagePath);
 				}
 				else
-					updateColor(serie_id, data.css_status, 'none', user_id, imagePath);
+					updateColor(serie_id, data.css_status, 'none', imagePath);
 			},
 			error : function(resultat, statut, erreur){
 				$("#results").html(getAlertError('Echec', 'Une erreur est survenue'));
@@ -61,15 +68,15 @@ function submitDelete(imagePath)
 	});
 }
 /* ************************  Confirmation d'une suppresion ************************************ */
-function deleteCollected(serie_id, user_id)
+function deleteCollected(serie_id)
 {
 	var confirmation = false;
 	$("#results").hide(500);
 	$.ajax({
-       url : "http://localhost/Symfony2/web/app_dev.php/delete_collected",
+       url : url+"delete_collected",
       // url : "http://localhost/Symfony2/web/app_dev.php"+Routing.generate('serie_data_formnewcollected'),
 	   type : "POST",
-	   data : 'serie_id=' + serie_id +'&user_id=' + user_id+'&confirmation=' + confirmation,
+	   data : 'serie_id=' + serie_id +'&confirmation=' + confirmation,
        success : function(data){ // code_html contient le HTML renvoyé           
 			$("#add_serie").html(data);
 			$('.bs-example-modal-lg').modal('show');
@@ -91,7 +98,6 @@ function submitAdd(imagePath)
 		var episodeSeen  = $('#collected_episodeSeen').val();
 		var comment  = $('#collected_comment').val();
 		var serie_id  = $('#serie_id').val();
-		var user_id  = $('#user_id').val();
 		var follow = false;
 		if($('#collected_follow').is(':checked'))
 				follow = true;
@@ -109,9 +115,9 @@ function submitAdd(imagePath)
 				alertLastEpisode = true;
 		
 		$.ajax({
-			url : "http://localhost/Symfony2/web/app_dev.php/add_collected",
+			url : url+"add_collected",
 			type : "POST",
-			data : 'serie_id='+serie_id+'&user_id='+user_id+'&comment='+comment+'&seasonSeen='+seasonSeen+'&episodeSeen='+episodeSeen+'&rating='+rating+'&follow='+follow+'&alertEachEpisode='+alertEachEpisode+'&alertFirstEpisode='+alertFirstEpisode+'&alertLastEpisode='+alertLastEpisode ,
+			data : 'serie_id='+serie_id+'&comment='+comment+'&seasonSeen='+seasonSeen+'&episodeSeen='+episodeSeen+'&rating='+rating+'&follow='+follow+'&alertEachEpisode='+alertEachEpisode+'&alertFirstEpisode='+alertFirstEpisode+'&alertLastEpisode='+alertLastEpisode ,
 			dataType: 'json',
 			success : function(data){ // code_html contient le HTML renvoyé    
 				$("#results").html(getAlertSuccess(data.title, data.content));
@@ -119,9 +125,9 @@ function submitAdd(imagePath)
 				$(".alert").fadeToggle(500);
 				var url_path = window.location.pathname;
 				if (url_path.indexOf("/serie/") >= 0) {
-					add_action_serieInfo(serie_id, user_id);
+					add_action_serieInfo(serie_id);
 				}
-				updateColor(serie_id, 'none', data.css_status, user_id, imagePath); 				
+				updateColor(serie_id, 'none', data.css_status,imagePath); 				
 			},
 			error : function(resultat, statut, erreur){
 				$('.loading').hide();
@@ -142,7 +148,6 @@ function submitUpdate(imagePath)
 		var episodeSeen  = $('#collected_episodeSeen').val();
 		var comment  = $('#collected_comment').val();
 		var serie_id  = $('#serie_id').val();
-		var user_id  = $('#user_id').val();
 		var follow = false;
 		if($('#collected_follow').is(':checked'))
 				follow = true;
@@ -160,15 +165,15 @@ function submitUpdate(imagePath)
 				alertLastEpisode = true;
 		
 		$.ajax({
-			url : "http://localhost/Symfony2/web/app_dev.php/add_collected",
+			url : url+"add_collected",
 			type : "POST",
-			data : 'serie_id='+serie_id+'&user_id='+user_id+'&comment='+comment+'&seasonSeen='+seasonSeen+'&episodeSeen='+episodeSeen+'&rating='+rating+'&follow='+follow+'&alertEachEpisode='+alertEachEpisode+'&alertFirstEpisode='+alertFirstEpisode+'&alertLastEpisode='+alertLastEpisode ,
+			data : 'serie_id='+serie_id+'&comment='+comment+'&seasonSeen='+seasonSeen+'&episodeSeen='+episodeSeen+'&rating='+rating+'&follow='+follow+'&alertEachEpisode='+alertEachEpisode+'&alertFirstEpisode='+alertFirstEpisode+'&alertLastEpisode='+alertLastEpisode ,
 			dataType: 'json',
 			success : function(data){ // code_html contient le HTML renvoyé    
 				$("#results").html(getAlertSuccess(data.title, data.content));
 				$("#results").show();
 				$(".alert").fadeToggle(500);
-				updateColor(serie_id, data.css_status_before, data.css_status_after, user_id, imagePath, 'add') 
+				updateColor(serie_id, data.css_status_before, data.css_status_after,imagePath, 'add') 
 			},
 			error : function(resultat, statut, erreur){
 				$('.loading').hide();
@@ -188,7 +193,7 @@ function cancelAction()
 	});
 }
 /* ************************ Modification de la couleur d'une série ************************************ */
-function updateColor(serie_id, css_status_before, css_status_after, user_id, imagePath) 
+function updateColor(serie_id, css_status_before, css_status_after, imagePath) 
 {
 	if(css_status_before == 'none') {
 		if(css_status_after == "Not started") 
@@ -198,8 +203,8 @@ function updateColor(serie_id, css_status_before, css_status_after, user_id, ima
 		else if(css_status_after == "Ended") 
 			$("#serie_"+serie_id).find(".hovereffect").removeClass("shadow_effect").addClass("shadow_effect_ended");
 		$("#serie_"+serie_id).find(".addDeleteSerie").html(
-		"<a href='javascript:getModalForm("+serie_id+","+user_id+")'><img src='"+imagePath+"update.png') }}' alt='MAJ' /></a>"+
-		"<a href='javascript:deleteCollected("+serie_id+","+user_id+")'><img src='"+imagePath+"delete2.png') }}' alt='sup' /></a>");
+		"<a href='javascript:getModalForm("+serie_id+")'><img src='"+imagePath+"update.png') }}' alt='MAJ' /></a>"+
+		"<a href='javascript:deleteCollected("+serie_id+")'><img src='"+imagePath+"delete2.png') }}' alt='sup' /></a>");
 	}
 	else if(css_status_after == 'none') {
 		if(css_status_before == "Not started") 

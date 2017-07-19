@@ -1,3 +1,0 @@
-serie_admin_homepage:
-    path:     /Admin/
-    defaults: { _controller: SerieAdminBundle:Home:home }

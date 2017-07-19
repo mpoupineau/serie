@@ -1,0 +1,42 @@
+serie_data_homepage:
+    path:     /load
+    defaults: { _controller: DataBundle:LoadData:addSeriess }
+
+serie_data_formpage:
+    path:     /form
+    defaults: { _controller: DataBundle:Serie:form }
+
+serie_data_formnewcollected:
+    path:     /form_new_collected
+    defaults: { _controller: DataBundle:Collected:getForm }
+    options:
+        expose: true
+serie_data_addcollected:
+    path:     /add_collected
+    defaults: { _controller: DataBundle:Collected:addCollected }
+    options:
+        expose: true
+
+serie_data_deletecollected:
+    path:     /delete_collected
+    defaults: { _controller: DataBundle:Collected:deleteCollected }
+    options:
+        expose: true
+
+#serie_data_formnewserie:
+ #   path:     /search-serie
+  #  defaults: { _controller: DataBundle:LoadData:addSeries }
+   # options:
+    #    expose: true
+
+#serie_data_getserie:
+ #   path:     /get_serie
+  #  defaults: { _controller: DataBundle:Serie:getSerie }
+   # options:
+    #    expose: true
+
+#serie_data_getseriesfilter:
+ #   path:     /get_series_filter
+  #  defaults: { _controller: DataBundle:Serie:getSeriesFilter }
+   # options:
+    #    expose: true

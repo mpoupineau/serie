@@ -1,0 +1,67 @@
+<div class="row">
+{% for serie in list_series %}
+	<div id="serie_{{ serie.id }}" class="col-xs-6 col-sm-3 col-md-2" style="margin-bottom:10px;">
+		{% if serie.inCollection(app.user.id) %}
+			{% if serie.inCollection(app.user.id).status == "Not started"  %}
+			<div class="hovereffect shadow_effect_not_started " >
+			{% elseif serie.inCollection(app.user.id).status == "Continuing" %}
+			<div class="hovereffect shadow_effect_continuing " >
+			{% elseif serie.inCollection(app.user.id).status == "Ended" %}
+			<div class="hovereffect shadow_effect_ended " >
+			{% endif %}
+		{% else %}
+		<div class="hovereffect shadow_effect" >
+		{% endif %}
+			{% if serie.poster != "" %}
+				<img class="poster" src="{{ asset('upload/poster/'~ serie.poster ~'') }}" alt="{{ serie.name }}" />
+			{% else %}
+				<img class="poster" src="{{ asset('images/default_poster.jpg') }}" alt="{{ serie.name }}" />
+			{% endif %}
+				<div class="overlay">
+					
+					<p class="addDeleteSerie">
+						{% if not serie.inCollection(app.user.id) %}
+						<a href="javascript:add({{serie.id}})"><img src="{{ asset('images/add.png') }}" alt="add" /></a>
+						{% else %}
+						<a href="javascript:update({{serie.id}})"><img src="{{ asset('images/update.png') }}" alt="MAJ" /></a>
+						<a href="javascript:deleteCollected({{serie.id}},{{app.user.id}})"><img src="{{ asset('images/delete2.png') }}" alt="sup" /></a>						
+						{% endif %}
+					</p>
+					
+					<br/><br/>
+					<h2>{{ serie.name }}</h2>
+					<p> 
+						<a class="info" href="serie/{{ serie.slug }}">fiche</a>									
+					</p> 
+				</div>
+		</div>
+	</div>	
+{% endfor %}
+</div>
+<div class="row" style="text-align:center">
+     <ul class="pagination pagination-lg">
+		{% if page > 3 %}
+			<li><a id="page_1" class="filter_submit_page" href="#"><<</a></li>
+			<li><a id="page_{{ page-1 }}" class="filter_submit_page" href="javascript:"><</a></li>
+		{% endif %}
+		{% for i in page-2..min(page+2,max_page) %}
+			{% if i > 0 %}
+				{% if i == page %}
+					<li class="active" ><a href="javascript:" >{{ i }}</a></li>
+				{% else %}
+					<li><a id="page_{{ i }}" class="filter_submit_page" href="javascript:">{{ i }}</a></li>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+		{% if page+2 < max_page %}
+		  <li><a id="page_{{ page+1 }}" class="filter_submit_page" href="javascript:">></a></li>
+		  <li><a id="page_{{ max_page }}" class="filter_submit_page" href="javascript:">>></a></li>
+		{% endif %}
+	</ul>
+</div>
+<script>
+	$('.filter_submit_page').click(function(){
+		var id = $(this).attr( "id" );
+		submitFilter(id.substring(5));
+	});
+</script>

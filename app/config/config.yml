@@ -3,11 +3,12 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@FMFileManagementBundle/Resources/config/services.yml" }
-    - { resource: "@SerieAppBundle/Resources/config/services.yml" }
-    - { resource: "@SerieDataBundle/Resources/config/services.yml" }
-    - { resource: "@SerieDataBundle/Resources/config/managers.yml" }
-    - { resource: "@SerieUserBundle/Resources/config/services.yml" }
-    - { resource: "@SerieAdminBundle/Resources/config/services.yml" }
+    - { resource: "@AppBundle/Resources/config/services.yml" }
+    - { resource: "@DataBundle/Resources/config/services.yml" }
+    - { resource: "@DataBundle/Resources/config/managers.yml" }
+    - { resource: "@DataBundle/Resources/config/listener.yml" }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
+    - { resource: "@AdminBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -77,10 +78,10 @@ swiftmailer:
 fos_user:
     db_driver:     orm                       # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
     firewall_name: main                      # Le nom du firewall derrière lequel on utilisera ces utilisateurs
-    user_class:    Serie\UserBundle\Entity\User # La classe de l'entité User que nous utilisons
+    user_class:    UserBundle\Entity\User # La classe de l'entité User que nous utilisons
     registration:
         form:
-            type: Serie\UserBundle\Form\RegistrationType
+            type: UserBundle\Form\RegistrationType
 assetic:
     debug:          '%kernel.debug%'
     use_controller: '%kernel.debug%'

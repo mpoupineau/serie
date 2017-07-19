@@ -1,33 +1,29 @@
 serie_admin:
-    resource: "@SerieAdminBundle/Resources/config/routing.yml"
+    resource: "@AdminBundle/Resources/config/routing.yml"
     prefix:   /
 
 serie_user:
-    resource: "@SerieUserBundle/Resources/config/routing.yml"
+    resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /
 
 serie_data:
-    resource: "@SerieDataBundle/Resources/config/routing.yml"
+    resource: "@DataBundle/Resources/config/routing.yml"
     prefix:   /
 
 serie_app:
-    resource: "@SerieAppBundle/Resources/config/routing.yml"
+    resource: "@AppBundle/Resources/config/routing.yml"
     prefix:   /
 
 fm_file_management:
     resource: "@FMFileManagementBundle/Resources/config/routing.yml"
     prefix:   /
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
-
 serie_app:
-    resource: "@SerieAppBundle/Controller"
+    resource: "@AppBundle/Controller"
     type: annotation
     
 serie_data:
-    resource: "@SerieDataBundle/Controller"
+    resource: "@DataBundle/Controller"
     type: annotation
 
 fos_js_routing:

@@ -1,0 +1,7 @@
+services:
+    updateEpisodesListener:
+        class: DataBundle\Listener\UpdateEpisodesListener
+        arguments: ['@episodemanager', '@serieservice']
+        tags: 
+            - { name: kernel.event_listener, event: episodes.update, method: onUpdateEpisodes }
+    

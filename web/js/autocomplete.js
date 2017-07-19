@@ -218,13 +218,21 @@ function autocomplete_data()
 			  				{ value : 'Le club des cinq (1996)', label : 'Le club des cinq (1996)', slug : 'le-club-des-cinq-1996', icon : '/Symfony2/web/upload/poster/posters/77665-2.jpg' },
 			  				{ value : 'The Famous Teddy Z', label : 'The Famous Teddy Z', slug : 'the-famous-teddy-z', icon : '/Symfony2/web/upload/poster/default/the-famous-teddy-z.jpg' },
 			  				{ value : 'I&#039;m Famous and Frightened', label : 'I&#039;m Famous and Frightened', slug : 'i-m-famous-and-frightened', icon : '/Symfony2/web/upload/poster/default/i-m-famous-and-frightened.jpg' },
-			  				{ value : 'Grand Prix', label : 'Grand Prix', slug : 'grand-prix', icon : '/Symfony2/web/upload/poster/posters/240711-3.jpg' },
-			  				{ value : 'Westworld', label : 'Westworld', slug : 'westworld', icon : '/Symfony2/web/upload/poster/posters/296762-3.jpg' },
 			  				{ value : 'Beyond Westworld', label : 'Beyond Westworld', slug : 'beyond-westworld', icon : '/Symfony2/web/upload/poster/posters/77993-2.jpg' },
 			  				{ value : 'Stranger Things', label : 'Stranger Things', slug : 'stranger-things', icon : '/Symfony2/web/upload/poster/posters/305288-4.jpg' },
 			  				{ value : 'The Man in the High Castle', label : 'The Man in the High Castle', slug : 'the-man-in-the-high-castle', icon : '/Symfony2/web/upload/poster/posters/295829-14.jpg' },
 			  				{ value : '** 403: Series Not Permitted **', label : '** 403: Series Not Permitted **', slug : '403-series-not-permitted', icon : '/Symfony2/web/upload/poster/default/.jpg' },
 			  				{ value : 'Falling Water', label : 'Falling Water', slug : 'falling-water', icon : '/Symfony2/web/upload/poster/posters/311917-5.jpg' },
+			  				{ value : '', label : '', slug : '', icon : '/Symfony2/web/upload/poster/posters/296762-3.jpg' },
+			  				{ value : '13 Reasons Why', label : '13 Reasons Why', slug : '13-reasons-why', icon : '/Symfony2/web/upload/poster/posters/323168-2.jpg' },
+			  				{ value : 'Immortal Grand Prix', label : 'Immortal Grand Prix', slug : 'immortal-grand-prix', icon : '/Symfony2/web/upload/poster/default/.jpg' },
+			  				{ value : 'Great Grand Prix Racing Heroes', label : 'Great Grand Prix Racing Heroes', slug : 'great-grand-prix-racing-heroes', icon : '/Symfony2/web/upload/poster/posters/252973-1.jpg' },
+			  				{ value : 'Future GPX Cyber Formula', label : 'Future GPX Cyber Formula', slug : 'future-gpx-cyber-formula', icon : '/Symfony2/web/upload/poster/default/.jpg' },
+			  				{ value : 'Arrow Emblem Grand Prix no Taka', label : 'Arrow Emblem Grand Prix no Taka', slug : 'arrow-emblem-grand-prix-no-taka', icon : '/Symfony2/web/upload/poster/posters/240711-1.jpg' },
+			  				{ value : 'Be a Grand Prix Driver', label : 'Be a Grand Prix Driver', slug : 'be-a-grand-prix-driver', icon : '/Symfony2/web/upload/poster/posters/268605-1.jpg' },
+			  				{ value : '', label : '', slug : '-1', icon : '/Symfony2/web/upload/poster/default/ippon-grand-prix.jpg' },
+			  				{ value : 'Weeds', label : 'Weeds', slug : 'weeds', icon : '/Symfony2/web/upload/poster/posters/74845-20.jpg' },
+			  				{ value : 'Sacred Weeds', label : 'Sacred Weeds', slug : 'sacred-weeds', icon : '/Symfony2/web/upload/poster/posters/138281-1.jpg' },
 			      ];
     $( "#serie_name" ).autocomplete({
       source: function(request, response) {

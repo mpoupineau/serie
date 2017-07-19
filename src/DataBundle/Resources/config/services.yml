@@ -1,0 +1,47 @@
+services:
+    fm_file_management.filem:
+        class: FM\FileManagementBundle\FileM\FileM
+
+    baseService:
+        class: DataBundle\Service\BaseService
+        arguments: ["@doctrine.orm.default_entity_manager"]
+        public: false
+        lazy: true
+        
+    serieService:
+        class: DataBundle\Service\SerieService
+        parent: baseService
+        arguments: [DataBundle\Entity\Serie]
+        public: true
+        lazy: true
+
+    collectedService:
+        class: DataBundle\Service\CollectedService
+        parent: baseService
+        arguments: [DataBundle\Entity\Collected]
+        public: true
+        lazy: true
+    
+    actorService:
+        class: DataBundle\Service\ActorService
+        parent: baseService
+        arguments: [DataBundle\Entity\Actor]
+        public: true
+        lazy: true
+        
+    episodeService:
+        class: DataBundle\Service\EpisodeService
+        parent: baseService
+        arguments: [DataBundle\Entity\Episode]
+        public: true
+        lazy: true
+        
+    callApiLogService:
+        class: DataBundle\Service\CallApiLogService
+        parent: baseService
+        arguments: [DataBundle\Entity\callApiLog]
+        public: true
+        lazy: true
+
+
+    

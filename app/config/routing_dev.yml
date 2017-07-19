@@ -13,11 +13,7 @@ _errors:
 _main:
     resource: routing.yml
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
-
 serie_app:
-    resource: "@SerieAppBundle/Controller"
+    resource: "@AppBundle/Controller"
     type: annotation
 

@@ -13,10 +13,10 @@ function hoverButton()
 
 /* ************************  Action on delete ************************************ */
 function delete_action_serieInfo(serie_id) {
-	$( "#div_button" ).html('<a href="javascript:getModalForm('+serie_id+',0)"><button type="button" class="btn btn-success btn-lg">Ajouter à ma collection</button></a>');
+	$( "#div_button" ).html('<a href="javascript:getModalForm('+serie_id+')"><button type="button" class="btn btn-success btn-lg">Ajouter à ma collection</button></a>');
 }
 
 /* ************************  Action on add ************************************ */
-function add_action_serieInfo(serie_id, user_id) {
-	$( "#div_button" ).html('<button type="button" id="button_colleced" class="btn btn-primary btn-lg">Dans ma collection</button> <a href="javascript:deleteCollected('+serie_id+','+user_id+')"><button type="button" id="button_collected" class="btn btn-danger btn-lg">X</button></a>');
+function add_action_serieInfo(serie_id) {
+	$( "#div_button" ).html('<button type="button" id="button_colleced" class="btn btn-primary btn-lg">Dans ma collection</button> <a href="javascript:deleteCollected('+serie_id+')"><button type="button" id="button_collected" class="btn btn-danger btn-lg">X</button></a>');
 }

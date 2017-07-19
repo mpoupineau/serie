@@ -1,0 +1,48 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block stylesheets %}
+	<link href="{{ asset('css/jMonthCalendar/core.css') }}" rel="stylesheet"/>
+	<link href="{{ asset('css/jMonthCalendar/cupertino/jquery-ui.cupertino.css') }}" rel="stylesheet"/>
+{% endblock %}
+{% block body %}
+<div class="container-fluid main_container dashboard">
+	<div class="row">
+		<div class="col-md-3">
+			{{ render(controller('AppBundle:Dashboard:newEpisodes')) }}
+		</div>
+		<div class="col-md-6">
+			<!--<div class="row">
+				<div class="col-md-12">
+					<h1>Tableau de bord</h1>
+				</div>
+			</div>-->
+			<div class="row">
+				<div class="col-md-4 button_link">
+					<a href="{{ path('serie_app_collection') }}">Ma collection</a>
+				</div>
+				<div class="col-md-4 button_link_disabled">
+					<a href="#">Mon calendrier</a>
+				</div>
+				<div class="col-md-4 button_link_disabled">
+					<a href="#">Mon profil</a>
+				</div>
+			</div>
+			<div class="row">
+				{{ render(controller('AppBundle:Dashboard:seriesToSee')) }}
+			</div>
+		</div>
+		<div class="col-md-3">
+			<!--{{ render(controller('AppBundle:Dashboard:seriesSuggestion')) }}-->
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{{ asset('js/jMonthCalendar/jMonthCalendar.js') }}"></script>
+<script src="{{ asset('js/jMonthCalendar/date.js') }}"></script>
+<script src="{{ asset('js/jMonthCalendar/time.js') }}"></script>
+{% endblock %}
