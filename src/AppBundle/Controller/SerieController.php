@@ -9,9 +9,9 @@ use DataBundle\Event\UpdateEpisodesEvent;
 class SerieController extends Controller
 {
     /**
-     * @Route("/serie/{slug}", name="serie_app_serieinfo")
+     * @Route("/serie/{slug}", name="app_serie_info", options = { "expose" = true })
      */
-    public function serieInfoAction($slug)
+    public function infoAction($slug)
 	{
 		$repository = $this->getDoctrine()->getManager()->getRepository('DataBundle:Serie');
 		$serie = $repository->findOneBySlug($slug);

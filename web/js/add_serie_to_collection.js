@@ -1,4 +1,3 @@
-var url = "http://localhost/Symfony2/web/app_dev.php/";
 function add(serie_id) {
     getModalForm(serie_id, "add");
 }
@@ -12,14 +11,13 @@ function getModalForm(serie_id, action)
 	$("#results").hide(500);
 	$('.loading').show();
 	$.ajax({
-       url : url+"form_new_collected",
-      // url : "http://localhost/Symfony2/web/app_dev.php"+Routing.generate('serie_data_formnewcollected'),
-	   type : "POST",
-	   data : 'serie_id=' + serie_id+'&action=' + action,
-       success : function(data){ // code_html contient le HTML renvoyé           
+        url : Routing.generate('data_collected_get_form'),
+        type : "POST",
+        data : 'serie_id=' + serie_id+'&action=' + action,
+        success : function(data){ // code_html contient le HTML renvoyé           
 			$("#add_serie").html(data);
 			$('.bs-example-modal-lg').modal('show');
-       },
+        },
 		error : function(resultat, statut, erreur){
 			$('.loading').hide();
 			$("#results").html(getAlertError('Echec', 'Une erreur est survenu'));
@@ -39,8 +37,7 @@ function submitDelete(imagePath)
 		var confirmation = true;
 		$("#results").hide(500);
 		$.ajax({
-			url : url+"delete_collected",
-			// url : "http://localhost/Symfony2/web/app_dev.php"+Routing.generate('serie_data_formnewcollected'),
+            url : Routing.generate('data_collected_delete'),
 			type : "POST",
 			data : 'collected_id=' + collected_id +'&confirmation=' + confirmation,
 			success : function(data){           
@@ -73,9 +70,8 @@ function deleteCollected(serie_id)
 	var confirmation = false;
 	$("#results").hide(500);
 	$.ajax({
-       url : url+"delete_collected",
-      // url : "http://localhost/Symfony2/web/app_dev.php"+Routing.generate('serie_data_formnewcollected'),
-	   type : "POST",
+       url : Routing.generate('data_collected_delete'),
+       type : "POST",
 	   data : 'serie_id=' + serie_id +'&confirmation=' + confirmation,
        success : function(data){ // code_html contient le HTML renvoyé           
 			$("#add_serie").html(data);
@@ -115,7 +111,7 @@ function submitAdd(imagePath)
 				alertLastEpisode = true;
 		
 		$.ajax({
-			url : url+"add_collected",
+            url : Routing.generate('data_collected_add'),
 			type : "POST",
 			data : 'serie_id='+serie_id+'&comment='+comment+'&seasonSeen='+seasonSeen+'&episodeSeen='+episodeSeen+'&rating='+rating+'&follow='+follow+'&alertEachEpisode='+alertEachEpisode+'&alertFirstEpisode='+alertFirstEpisode+'&alertLastEpisode='+alertLastEpisode ,
 			dataType: 'json',
@@ -165,7 +161,7 @@ function submitUpdate(imagePath)
 				alertLastEpisode = true;
 		
 		$.ajax({
-			url : url+"add_collected",
+            url : Routing.generate('data_collected_add'),
 			type : "POST",
 			data : 'serie_id='+serie_id+'&comment='+comment+'&seasonSeen='+seasonSeen+'&episodeSeen='+episodeSeen+'&rating='+rating+'&follow='+follow+'&alertEachEpisode='+alertEachEpisode+'&alertFirstEpisode='+alertFirstEpisode+'&alertLastEpisode='+alertLastEpisode ,
 			dataType: 'json',

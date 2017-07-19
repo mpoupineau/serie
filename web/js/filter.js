@@ -43,7 +43,7 @@ function submitFilter(num_page)
 	var continuing   = initContinuing();
 	$("#bloc_serie").fadeOut(500);
 	$.ajax({
-		url: "http://localhost/Symfony2/web/app_dev.php/get_series_filter",
+        url: Routing.generate('app_library_get_series_by_filter'),
 		type: "POST",
 		data : 'years_range=' + years_range +'&tab_category=' + tab_category +'&rating_range=' + rating_range +'&continuing=' + continuing + '&num_page=' + num_page,
 		dataType : 'json',

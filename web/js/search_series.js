@@ -7,7 +7,7 @@ $(document).ready(function() { // rechercher barre du haut
 		$("#results").slideUp(500);
         var serie_name = $('#serie_name').val();
 		$.ajax({
-			url: "http://localhost/Symfony2/web/app_dev.php/get_serie",
+            url: Routing.generate('app_search_get_serie'),
 			type: "POST",
 			data : 'serie_name=' + serie_name,
 			success: function(data) { 

@@ -242,8 +242,8 @@ function autocomplete_data()
     },
 	  minLength : 1 ,
 	  delay: 200,
-	  select : function(event, ui){ // lors de la sélection d'une proposition
-		url = "http://localhost/Symfony2/web/app_dev.php/serie/"+ui.item.slug;
+	  select : function(event, ui){ // lors de la sï¿½lection d'une proposition
+		url = Routing.generate('app_serie_info', { slug : ui.item.slug });
 		$(location).attr("href", url);
 		}
     });

@@ -18,7 +18,7 @@ use DataBundle\Entity\Serie;
 class SearchController extends Controller {
     
     /**
-     * @Route("/get_serie", name="serie_app_get_serie")
+     * @Route("/get_serie", name="app_search_get_serie", options = { "expose" = true })
      */
     public function getSerieAction(Request $request)
 	{

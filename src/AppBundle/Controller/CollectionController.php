@@ -18,9 +18,9 @@ class CollectionController extends Controller
     }
 	
     /**
-     * @Route("/collection_sorted", name="serie_app_collection_sorted")
+     * @Route("/sort_collection", name="app_collection_sort", options = { "expose" = true })
      */
-    public function seriesSortedAction(Request $request)
+    public function sortAction(Request $request)
     {
 		$user = $this->get('security.token_storage')->getToken()->getUser();
 		

@@ -19,9 +19,8 @@ function sortBy(type)
 	changeActiveLink(type);
 	$("#collection_tab").fadeOut(500);
 	$.ajax({
-			url : "http://localhost/Symfony2/web/app_dev.php/collection_sorted",
-			// url : "http://localhost/Symfony2/web/app_dev.php"+Routing.generate('serie_data_formnewcollected'),
-			type : "POST",
+            url : Routing.generate('app_collection_sort'),
+            type : "POST",
 			data : 'type_sort=' + type,
 			success : function(data){   
 				$("#collection_tab").html(data);

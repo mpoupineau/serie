@@ -16,4 +16,8 @@ _main:
 serie_app:
     resource: "@AppBundle/Controller"
     type: annotation
+    
+serie_data:
+    resource: "@DataBundle/Controller"
+    type: annotation
 

@@ -6,7 +6,7 @@
 			<div class="row">
 		{% endif %}
 		<div class="col-md-1" style="margin-bottom:10px;">				
-			<a href="{{ path('serie_app_serieinfo', { 'slug': serie.slug }) }}">
+			<a href="{{ path('app_serie_info', { 'slug': serie.slug }) }}">
 				{% if serie.poster != "" %}
 					<img class="poster" src="{{ asset('upload/poster/'~ serie.poster ~'') }}" alt="{{ serie.name }}" />
 				{% else %}

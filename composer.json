@@ -31,7 +31,7 @@
 		"symfony/assetic-bundle" : "dev-master",
 		"pugx/autocompleter-bundle" : "dev-master",
 		"stof/doctrine-extensions-bundle": "dev-master",
-		"friendsofsymfony/jsrouting-bundle": "dev-master",
+		"friendsofsymfony/jsrouting-bundle": "^1.6",
 		"twig/extensions": "dev-master"
     },
     "require-dev": {

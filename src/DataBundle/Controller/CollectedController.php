@@ -3,6 +3,7 @@ namespace DataBundle\Controller;
 
 use DataBundle\Form\getFormCollectedForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +13,9 @@ use DataBundle\Form\CollectedType;
 
 class CollectedController extends Controller
 {
+    /**
+     * @Route("/form_collected", name="data_collected_get_form", options = { "expose" = true })
+     */
 	public function getFormAction(Request $request)
     {		
 		if ($request->isMethod('POST')) {
@@ -51,6 +55,9 @@ class CollectedController extends Controller
 		}
     }
 	
+    /**
+     * @Route("/add_collected", name="data_collected_add", options = { "expose" = true })
+     */
 	public function addCollectedAction(Request $request)
     {		
 		if ($request->isMethod('POST')) {
@@ -103,6 +110,9 @@ class CollectedController extends Controller
 		}
     }
 	
+    /**
+     * @Route("/delete_collected", name="data_collected_delete", options = { "expose" = true })
+     */
 	public function deleteCollectedAction(Request $request)
 	{
 		if ($request->isMethod('POST')) {

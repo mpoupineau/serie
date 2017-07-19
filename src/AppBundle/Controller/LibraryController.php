@@ -14,7 +14,7 @@ class LibraryController extends Controller
     const NB_ELEMENT = 36;
     
     /**
-     * @Route("/get_series_filter", name="serie_app_getseriesfilter")
+     * @Route("/get_series_by_filter", name="app_library_get_series_by_filter", options = { "expose" = true })
      */
     public function getSeriesFilterAction(Request $request) 
 	{
