@@ -1,13 +1,12 @@
 <?php
-namespace DataBundle\Listener;
+namespace DataBundle\EventListener;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use DataBundle\Event\UpdateEpisodesEvent;
 use DataBundle\Entity\Serie;
 use DataBundle\Manager\EpisodeManager;
 use DataBundle\Service\SerieService;
 
-class UpdateEpisodesListener //implements EventSubscriberInterface
+class UpdateEpisodesListener 
 {
     /** @var EpisodeManager */
     protected $episodeManager;

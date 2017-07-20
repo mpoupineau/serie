@@ -1,13 +1,12 @@
 {% extends "UserBundle::layout.html.twig" %}
 
-{% block title %}Créer un compte{% endblock %}
+{% block title %}Compte créé{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-md-offset-4 col-md-4" id="user_container">
-        <h1>Créer un compte</h1>
-        {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+        <h1>Compte Créé !</h1>
+        <a href="{{ path('app_library_all_serie') }}">Accédez à votre espace</a>
     </div>
 </div>
 {% endblock %}
-

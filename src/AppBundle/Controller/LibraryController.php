@@ -62,7 +62,7 @@ class LibraryController extends Controller
 	}
     
     /**
-     * @Route("/all-serie", name="serie_app_seriepage")
+     * @Route("/all-serie", name="app_library_all_serie")
      */
 	public function allSerieAction()
     {

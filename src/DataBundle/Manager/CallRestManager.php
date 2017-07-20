@@ -53,7 +53,7 @@ class CallRestManager
         
         curl_close($curl);
         
-        $this->logCall($this->token, $url, $language, $response);
+        $this->logCall($this->token, $completeUrl, $language, $response);
         
         // If there is no result in FR, we try in EN
         if((isset(json_decode($response)->Error) || (isset(json_decode($response)->data) && json_decode($response)->data == null)) && $language == 'FR') {

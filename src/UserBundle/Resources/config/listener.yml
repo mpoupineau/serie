@@ -1,0 +1,7 @@
+services:
+   # registrationConfirmListener:
+    #    class: UserBundle\EventListener\RegistrationConfirmListener
+     #   arguments: ['@router']
+      #  tags:
+       #     - { name: kernel.event_listener, event: fos_user.registration.completed, method: onRegistrationConfirm }
+            

@@ -8,6 +8,7 @@ imports:
     - { resource: "@DataBundle/Resources/config/managers.yml" }
     - { resource: "@DataBundle/Resources/config/listener.yml" }
     - { resource: "@UserBundle/Resources/config/services.yml" }
+    - { resource: "@UserBundle/Resources/config/listener.yml" }
     - { resource: "@AdminBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
