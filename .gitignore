@@ -63,7 +63,7 @@
 /composer.phar
 
 # upload
-/web/upload
+#/web/upload
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~

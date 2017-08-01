@@ -6,6 +6,14 @@ serie_user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /
 
+serie_data:
+    resource: "@DataBundle/Resources/config/routing.yml"
+    prefix:   /
+
+serie_app:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /
+
 fm_file_management:
     resource: "@FMFileManagementBundle/Resources/config/routing.yml"
     prefix:   /
